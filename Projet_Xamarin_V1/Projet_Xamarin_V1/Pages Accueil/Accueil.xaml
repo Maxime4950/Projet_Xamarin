@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.Accueil">
+    
+  <!--Pages can be added as references or inline-->
+
+    <NavigationPage.TitleView>
+        <AbsoluteLayout VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="logoChef.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start"/>
+                <Label Text="Application Réseau"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+                <Button x:Name="btnDeconnexion" Clicked="btnDeconnexion_Clicked" Grid.Row="0" ImageSource="Deconnexion.png"
+                            BackgroundColor="Transparent"  TextColor="White"
+                             VerticalOptions="CenterAndExpand" HorizontalOptions="End" Margin="20,0,0,0" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+    <!--PARTIE RECETTES-->
+    <ContentPage Title="Recettes">
+        <StackLayout>
+            <StackLayout HorizontalOptions="Start">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Caract : " Grid.Column="0" FontSize="Large" Margin="5,15,0,0"></Label>
+                    <Picker x:Name="pCaracteristiques" WidthRequest="80" Grid.Column="1"></Picker>
+                    <Button x:Name="btnFiltrerCaracteristiques" Grid.Column="2"  BackgroundColor="Orange"  TextColor="White" ImageSource="search.png" Margin="0,5,5,5" Clicked="btnFiltrerCaracteristiques_Clicked"></Button>
+                    <Button x:Name="btnAnnulerFiltreCaract" Grid.Column="3"  BackgroundColor="Orange"  TextColor="White" ImageSource="annuler.png" Margin="0,5,5,5" Clicked="btnAnnulerFiltreCaract_Clicked"></Button>
+                </Grid>
+            </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollView>
+                    <StackLayout>
+                        <ListView x:Name="lvRecette" HasUnevenRows="True" ItemSelected="lvRecette_ItemSelected" >
+                            <ListView.ItemTemplate>
+                       <DataTemplate>
+                          <ViewCell Height="350">
+                          <Frame HasShadow="True" Margin="5" BackgroundColor="Orange">
+                             <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nom}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                 <StackLayout HeightRequest="20" Orientation="Horizontal">
+                                 <Label Text="{Binding Budget}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                 <Label Text="," TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                 <Label Text="{Binding Ingredients}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                 </StackLayout>
+                                 <StackLayout Orientation="Horizontal">
+                                 <Image Source="{Binding UrlImage}" WidthRequest="400" HeightRequest="266" Aspect="Fill" />
+                                 </StackLayout>
+                             </StackLayout>
+                          </Frame>
+                          </ViewCell>
+                       </DataTemplate>
+                    </ListView.ItemTemplate>
+                    </ListView>
+                    </StackLayout>
+                </ScrollView>
+                <Button x:Name="btnAjoutRecette" Clicked="btnAjoutRecette_Clicked" Grid.Row="0" Text="Ajouter une recette" FontAttributes="Bold" BackgroundColor="OrangeRed" BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage>
+
+    <!--PARTIE ETABLISSEMENTS-->
+    <ContentPage Title="Cafés/Restaurants">
+        <StackLayout>
+            <StackLayout HorizontalOptions="Start">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Ville : " Grid.Column="0" FontSize="Large" Margin="5,15,0,0"></Label>
+                    <Picker x:Name="pVille" WidthRequest="100" Grid.Column="1"></Picker>
+                    <Button x:Name="btnFiltrerVille" Grid.Column="2"  BackgroundColor="Orange"  TextColor="White" ImageSource="search.png" Margin="0,5,5,5" Clicked="btnFiltrerVille_Clicked"></Button>
+                    <Button x:Name="btnAnnulerFiltrerVille" Grid.Column="3"  BackgroundColor="Orange"  TextColor="White" ImageSource="annuler.png" Margin="0,5,5,5" Clicked="btnAnnulerFiltrerVille_Clicked"></Button>
+                </Grid>
+            </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollView>
+                    <StackLayout>
+                        <ListView x:Name="lvEtablissement" HasUnevenRows="True" ItemSelected="lvEtablissement_ItemSelected" Refreshing="lvEtablissement_Refreshing">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell Height="350">
+                                        <Frame HasShadow="true" Margin="5" BackgroundColor="Orange">
+                                            <StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Nom}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                </StackLayout>
+                                                <StackLayout HeightRequest="20" Orientation="Horizontal">
+                                                    <Label Text="{Binding Budget, StringFormat='{0:0}/5,'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                    <Label Text="{Binding Ville}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Image Source="{Binding UrlImage}" WidthRequest="400" HeightRequest="266" Aspect="Fill" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+                <Button x:Name="btnAjoutEtablissement" Clicked="AjoutEtablissement_Clicked" Grid.Row="0" Text="Ajouter un établissement" FontAttributes="Bold" BackgroundColor="OrangeRed" BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage>
+
+    <!--PARTIE PROFIL-->
+    <ContentPage Title="Mon profil">
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <!--Titre-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Informations du Profil :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <!--Premier champ : pseudo-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Pseudo:</Label>
+                            <Entry x:Name="ePseudoProfil" Margin="10,0,0,0" FontSize="Small" Text="Content" IsReadOnly="true"></Entry>
+
+                            <!--Deuxième champ : mail-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Adresse mail:</Label>
+                            <Entry x:Name="eEmailProfil" Margin="10,0,0,0" FontSize="Small" Text="Content" IsReadOnly="true"></Entry>
+
+                            <!--Troisième champ : password-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Mot de passe:</Label>
+                            <Entry x:Name="eMotDePasseProfil" IsPassword="True" Margin="10,0,0,0" FontSize="Small" IsReadOnly="true"></Entry>
+
+                            <!-- Quatrième champ : Date de naissance-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Date de naissance:</Label>
+                            <Entry x:Name="eDateNaissanceProfil" Margin="10,0,0,0" FontSize="Small"  IsReadOnly="true"></Entry>
+
+                            <!--Cinquième champ : Date inscription-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Date d'inscription:</Label>
+                            <Entry x:Name="eDateInscriptionProfil" Margin="10,0,0,0" FontSize="Small"  IsReadOnly="true"></Entry>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <StackLayout>
+                    <Button x:Name="btnSupprimerProfil"  Text="Supprimer le profil" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnSupprimerProfil_Clicked" ImageSource="delete.png"/>
+                    <Button x:Name="btnModifierProfil"  Text="Modifier les données" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifierProfil_Clicked" ImageSource="edit.png"/>
+                </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                <StackLayout>
+                    <Button x:Name="btnGererRecettesProfil"  Text="Gérer vos recettes" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" ImageSource="recipeBook.png" Clicked="btnGererRecettesProfil_Clicked"/>
+                    <Button x:Name="btnGererEtablissementsProfil"  Text="Gérer vos établissements" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" ImageSource="resto.png" Clicked="btnGererEtablissementsProfil_Clicked"/>
+                </StackLayout>
+
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                <StackLayout>
+                    <Button x:Name="btnGererAvisRecettes"  Text="Gérer vos avis sur les recettes" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" ImageSource="note.png" Clicked="btnGererAvisRecettes_Clicked"/>
+                    <Button x:Name="btnGererAvisEtablissements"  Text="Gérer vos avis sur les établissements" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" ImageSource="note.png" Clicked="btnGererAvisEtablissements_Clicked"/>
+                </StackLayout>
+
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>

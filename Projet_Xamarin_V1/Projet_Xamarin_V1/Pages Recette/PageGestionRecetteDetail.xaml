@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.Pages_Recette.PageGestionRecetteDetail">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Informations de la Recette :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <Image x:Name="imgRecette" WidthRequest="400" HeightRequest="266" Aspect="Fill" Margin="5,0,0,0"/>
+
+                            <!--Premier champ : nom-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Nom:</Label>
+                            <Entry x:Name="eNom" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Deuxième champ : budget-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Budget:</Label>
+                            <Entry x:Name="eBudget" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Troisième champ : ingredient-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Ingredients:</Label>
+                            <Entry x:Name="eIngredients" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Quatrième champ : Descrition-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
+                            <Editor x:Name="eDescription" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Editor>
+
+                            <!--Cinquième champ : Caracteristique-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Caracteristique:</Label>
+                            <Entry x:Name="eCaracteristique" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Sixième champ : Type-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Type:</Label>
+                            <Entry x:Name="eType" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <StackLayout>
+                    <Button x:Name="btnSupprimer" Text="Supprimer la recette" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnSupprimer_Clicked"  ImageSource="delete.png"/>
+                    <Button x:Name="btnModifier" Text="Modifier la recette" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifier_Clicked"  ImageSource="edit.png"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

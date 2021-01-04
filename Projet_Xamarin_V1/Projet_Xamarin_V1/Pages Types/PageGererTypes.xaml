@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.PageGererTypes">
+    <NavigationPage.TitleView>
+        <AbsoluteLayout VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="logoChef.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start"/>
+                <Label Text="Application Réseau"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+                <Button x:Name="btnDeconnexion" Clicked="btnDeconnexion_Clicked" Grid.Row="0" ImageSource="Deconnexion.png"
+                            BackgroundColor="Transparent"  TextColor="White"
+                             VerticalOptions="CenterAndExpand" HorizontalOptions="End" Margin="20,0,0,0" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <!--Titre-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Gestion des types :</Label>
+                                </StackLayout>
+                            </Frame>
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                            <!--Bouton-->
+                            <Button x:Name="btnAjouterTypes"  Text="Ajouter un type" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnAjouterTypes_Clicked" ImageSource="add.png"/>
+                            <Button x:Name="btnModifierTypes"  Text="Modifer un type" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifierTypes_Clicked" ImageSource="edit.png"/>
+                            <Button x:Name="btnSupprimerTypes"  Text="Supprimer un type" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnSupprimerTypes_Clicked" ImageSource="delete.png"/>
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                            <!--Liste caract-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Medium" TextColor="Gray">Liste des types :</Label>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="Orange" HorizontalOptions="CenterAndExpand">
+                                <ListView x:Name="lvTypes" IsPullToRefreshEnabled="True" Refreshing="lvTypes_Refreshing">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextCell Text="{Binding Nom}" TextColor="white"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.AccueilAdmin">
+  <!--Pages can be added as references or inline-->
+    <NavigationPage.TitleView>
+        <AbsoluteLayout VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="logoChef.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start"/>
+                <Label Text="Application Réseau"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+                <Button x:Name="btnDeconnexion" Clicked="btnDeconnexion_Clicked" Grid.Row="0" ImageSource="Deconnexion.png"
+                            BackgroundColor="Transparent"  TextColor="White"
+                             VerticalOptions="CenterAndExpand" HorizontalOptions="End" Margin="20,0,0,0" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+    <!--PARTIE AJOUT ELEMENT-->
+    <ContentPage Title="Ajouter des éléments">
+        <ScrollView>
+            <StackLayout Padding="0">
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <!--Titre-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Ajouter des éléments :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <StackLayout>
+                                <Button x:Name="btnGestionCaracteristiques"  Text="Gérer les caractéristiques" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnGererCaracteristiques_Clicked"/>
+                                <Button x:Name="btnGestionType"  Text="Gérer les types de recettes" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnGererType_Clicked"/>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+    <!--PARTIE PROFIL-->
+    <ContentPage Title="Mon profil">
+        <ScrollView>
+            <StackLayout Padding="0">
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <!--Titre-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Informations du Profil :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <!--Premier champ : pseudo-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Pseudo:</Label>
+                            <Entry x:Name="ePseudoProfil" Margin="10,0,0,0" FontSize="Small" Text="Content" IsReadOnly="true"></Entry>
+
+                            <!--Deuxième champ : mail-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Adresse mail:</Label>
+                            <Entry x:Name="eEmailProfil" Margin="10,0,0,0" FontSize="Small" Text="Content" IsReadOnly="true"></Entry>
+
+                            <!--Troisième champ : password-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Mot de passe:</Label>
+                            <Entry x:Name="eMotDePasseProfil" IsPassword="True" Margin="10,0,0,0" FontSize="Small" IsReadOnly="true"></Entry>
+
+                            <!-- Quatrième champ : Date de naissance-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Date de naissance:</Label>
+                            <Entry x:Name="eDateNaissanceProfil" Margin="10,0,0,0" FontSize="Small"  IsReadOnly="true"></Entry>
+
+                            <!--Cinquième champ : Date inscription-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Date d'inscription:</Label>
+                            <Entry x:Name="eDateInscriptionProfil" Margin="10,0,0,0" FontSize="Small"  IsReadOnly="true"></Entry>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <StackLayout>
+                    <Button x:Name="btnModifierProfil"  Text="Modifier les données" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifierProfil_Clicked"/>
+                </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>

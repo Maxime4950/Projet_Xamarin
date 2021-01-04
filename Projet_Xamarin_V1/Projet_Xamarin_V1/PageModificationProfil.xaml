@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.PageModificationProfil">
+    <NavigationPage.TitleView>
+        <AbsoluteLayout VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="logoChef.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start"/>
+                <Label Text="Application Réseau"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+                <Button x:Name="btnDeconnexion" Clicked="btnDeconnexion_Clicked" Grid.Row="0" ImageSource="Deconnexion.png"
+                            BackgroundColor="Transparent"  TextColor="White"
+                             VerticalOptions="CenterAndExpand" HorizontalOptions="End" Margin="20,0,0,0" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0">
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <!--Titre-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Modification du Profil :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <!--Premier champ : pseudo-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Pseudo:</Label>
+                            <Entry x:Name="ePseudoProfil" Margin="10,0,0,0" FontSize="Small"></Entry>
+
+                            <!--Deuxième champ : mail-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Adresse mail:</Label>
+                            <Entry x:Name="eEmailProfil" Margin="10,0,0,0" FontSize="Small"></Entry>
+
+                            <!--Troisième champ : password-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Mot de passe:</Label>
+                            <Entry x:Name="eMotDePasseProfil" Margin="10,0,0,0" FontSize="Small"></Entry>
+
+                            <!-- Quatrième champ : Date de naissance-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Date de naissance:</Label>
+                            <DatePicker x:Name="dtpDateNaissanceProfil" Margin="10,0,0,0" FontSize="Small"></DatePicker>
+                            
+                        </StackLayout>
+                        <Button x:Name="btnConfirmerModif" Text="Confirmer Modification" Clicked="btnConfirmerModif_Clicked"></Button>
+                    </StackLayout>
+                  
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.PageAjouterAvisRecettes">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0">
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+
+                        <!--LABEL TITRE-->
+                        <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label FontSize="Large" TextColor="Gray">Ajouter un avis de recette :</Label>
+                            </StackLayout>
+                        </Frame>
+
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                        <!--Note-->
+                        <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Note:</Label>
+                        <Entry x:Name="eNote" Margin="10,0,0,0" FontSize="Small"></Entry>
+                        <!--Description-->
+                        <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
+                        <Editor x:Name="eDescription" Margin="10,0,0,0" FontSize="Small" AutoSize="TextChanges"></Editor>
+                        
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                        <!-- Bouton-->
+                        <Button x:Name="btnConfirmerAjout"  Text="CONFIRMERS" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
+                        <Button x:Name="btnAnnulerAjout"  Text="ANNULER" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnAnnulerAjout_Clicked"/>
+
+
+                    </StackLayout>
+
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

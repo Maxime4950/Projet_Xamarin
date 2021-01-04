@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.PageAjouterRecette">
+    <ScrollView>
+
+        <StackLayout Padding="0">
+            <Grid>
+                <StackLayout Margin="0,0,10,0">
+
+                    <!--LABEL TITRE-->
+                    <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label FontSize="Large" TextColor="Gray">Ajout Recette :</Label>
+                        </StackLayout>
+                    </Frame>
+
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                    <!--NOM RECETTE-->
+
+                    <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Nom de la Recette:</Label>
+                    <Entry x:Name="eNomRecette" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="eNomRecette_TextChanged" Unfocused="eNomRecette_Unfocused"  ></Entry>
+                    <!--Budget-->
+                    <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Budget:</Label>
+                    <Entry x:Name="eBudget" Margin="10,0,0,0" FontSize="Small" Text=""  Unfocused="eBudget_Unfocused"></Entry>
+                    <!--Ingredients-->
+                    <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Ingrédients:</Label>
+                    <Entry x:Name="eIngredients" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="eIngredients_TextChanged" Unfocused="eIngredients_Unfocused"></Entry>
+                    <!--Description-->
+                    <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
+                    <Editor x:Name="eDescription" Margin="10,0,0,0" FontSize="Small" AutoSize="TextChanges" Text="" TextChanged="eDescription_TextChanged" Unfocused="eDescription_Unfocused" ></Editor>
+                    <!--image-->
+                    <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">URL de l'image:</Label>
+                    <Entry x:Name="eUrl" Margin="10,0,0,0" FontSize="Small" Unfocused="eUrl_Unfocused" Text=""></Entry>
+                    <!--Caracteristique-->
+                    <Label Margin="10,0,0,0" FontSize="Small" TextColor="Orange">Caractéristiques</Label>
+                    <Picker x:Name="pCaract" WidthRequest="200"></Picker> 
+                    <!--Type-->
+                    <Label Margin="10,0,0,0" FontSize="Small" TextColor="Orange">Type de Recette</Label>
+                    <Picker x:Name="pType" WidthRequest="200"></Picker>
+
+                    <!-- Bouton-->
+                    <Button x:Name="btnConfirmerAjout"  Text="CONFIRMER AJOUT RECETTE" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                    <Button x:Name="btnAnnulerAjout"  Text="ANNULER" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnAnnulerAjout_Clicked"/>
+
+                </StackLayout>
+
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

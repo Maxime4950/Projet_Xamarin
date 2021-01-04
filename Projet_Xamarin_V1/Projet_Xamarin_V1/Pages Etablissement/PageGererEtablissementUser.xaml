@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.PageGererEtablissementsUser">
+    <NavigationPage.TitleView>
+        <AbsoluteLayout VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="logoChef.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start"/>
+                <Label Text="Application Réseau"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+                <Button x:Name="btnDeconnexion" Clicked="btnDeconnexion_Clicked" Grid.Row="0" ImageSource="Deconnexion.png"
+                            BackgroundColor="Transparent"  TextColor="White"
+                             VerticalOptions="CenterAndExpand" HorizontalOptions="End" Margin="20,0,0,0" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollView>
+                    <StackLayout>
+                        <ListView x:Name="lvEtablissement" HasUnevenRows="True" ItemSelected="lvEtablissement_ItemSelected">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell Height="350">
+                                        <Frame HasShadow="true" Margin="5" BackgroundColor="Orange">
+                                            <StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Nom}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                </StackLayout>
+                                                <StackLayout HeightRequest="20" Orientation="Horizontal">
+                                                    <Label Text="{Binding Budget, StringFormat='{0:0}/5,'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                    <Label Text="{Binding Ville}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Image Source="{Binding UrlImage}" WidthRequest="400" HeightRequest="266" Aspect="Fill" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+                <Button x:Name="btnRetourAccueil" Clicked="btnRetourAccueil_Clicked"  Grid.Row="0" Text="Retour à l'acceuil" FontAttributes="Bold" BackgroundColor="OrangeRed" BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

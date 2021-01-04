@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.Pages_Etablissement.PageModifierEtablissement">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0">
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <!--Titre-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Modification Etablissement :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <!--Premier champ : nom-->
+                            <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Nom :</Label>
+                            <Entry x:Name="eNom" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="eNom_TextChanged"></Entry>
+
+                            <!--Deuxième champ : rue-->
+                            <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Rue:</Label>
+                            <Entry x:Name="eRue" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="eRue_TextChanged"></Entry>
+
+                            <!--Troisième champ : numero-->
+                            <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Numero:</Label>
+                            <Entry x:Name="eNumero" Margin="10,0,0,0" FontSize="Small" Unfocused="eNumero_Unfocused"  Text=""></Entry>
+
+                            <!-- Quatrième champ : ville-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Ville:</Label>
+                            <Entry x:Name="eVille" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="eVille_TextChanged"></Entry>
+
+                            <!--Cinquième champ : code postal-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Code Postal:</Label>
+                            <Entry x:Name="eCodePostal" Margin="10,0,0,0" FontSize="Small" Unfocused="eCodePostal_Unfocused"  Text=""></Entry>
+
+                            <!--Sixième champ : pays-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Pays:</Label>
+                            <Entry x:Name="ePays" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="ePays_TextChanged"></Entry>
+
+                            <!--Septième champ : budget-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Budget:</Label>
+                            <Entry x:Name="eBudget" Margin="10,0,0,0" FontSize="Small" Unfocused="eBudget_Unfocused"  Text=""></Entry>
+
+                            <!--Huitième champ : image-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">URL de l'image:</Label>
+                            <Entry x:Name="eUrl" Margin="10,0,0,0" FontSize="Small" Text=""></Entry>
+
+                            <!--Neuvième champ : Caracteristiques-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Caractéristiques:</Label>
+                            <Picker x:Name="pCaracteristiques" WidthRequest="200" FontSize="Small" Margin="10,0,0,0"></Picker>
+
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                <StackLayout>
+                    <Button x:Name="btnModifierEtablissement"  Text="Modifier" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifierEtablissement_Clicked" />
+                    <Button x:Name="btnAnnulerModification"  Text="Annuler" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnAnnulerModification_Clicked"/>
+                </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
