@@ -186,7 +186,7 @@
 
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
                 <StackLayout>
-                    <Button x:Name="btnGererAvisRecettes"  Text="Gér vos avis sur les recettes" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" ImageSource="note.png" Clicked="btnGererAvisRecettes_Clicked"/>
+                    <Button x:Name="btnGererAvisRecettes"  Text="Gérer vos avis sur les recettes" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" ImageSource="note.png" Clicked="btnGererAvisRecettes_Clicked"/>
                     <Button x:Name="btnGererAvisEtablissements"  Text="Gérer vos avis sur les établissements" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" ImageSource="note.png" Clicked="btnGererAvisEtablissements_Clicked"/>
                 </StackLayout>
 
