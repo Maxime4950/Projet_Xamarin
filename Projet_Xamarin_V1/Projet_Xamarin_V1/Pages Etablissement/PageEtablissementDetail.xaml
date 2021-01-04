@@ -10,7 +10,7 @@
                         <StackLayout>
                             <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Label FontSize="Large" TextColor="Gray">Informations de l'établissement :</Label>
+                                    <Label FontSize="Large" TextColor="Gray">Informations de l'Etablissement :</Label>
                                 </StackLayout>
                             </Frame>
 
