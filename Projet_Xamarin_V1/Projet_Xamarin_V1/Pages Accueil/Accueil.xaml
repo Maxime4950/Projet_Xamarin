@@ -23,7 +23,7 @@
             </StackLayout>
         </AbsoluteLayout>
     </NavigationPage.TitleView>
-    <!--PARTIE RECETTES-->
+    <!-- PARTIE RECETTES -->
     <ContentPage Title="Recettes">
         <StackLayout>
             <StackLayout HorizontalOptions="Start">
@@ -39,7 +39,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Text="Caract : " Grid.Column="0" FontSize="Large" Margin="5,15,0,0"></Label>
                     <Picker x:Name="pCaracteristiques" WidthRequest="80" Grid.Column="1"></Picker>
-                    <Button x:Name="btnFiltrerCaracteristiques" Grid.Column="2"  BackgroundColor="Orange"  TextColor="White" ImageSource="search.png" Margin="0,5,5,5" Clicked="btnFiltrerCaracteristiques_Clicked"></Button>
+                    <Button x:Name="btnFiltrerCaracteristiques" Grid.Column="2"  BackgroundColor="Red"  TextColor="White" ImageSource="search.png" Margin="0,5,5,5" Clicked="btnFiltrerCaracteristiques_Clicked"></Button>
                     <Button x:Name="btnAnnulerFiltreCaract" Grid.Column="3"  BackgroundColor="Orange"  TextColor="White" ImageSource="annuler.png" Margin="0,5,5,5" Clicked="btnAnnulerFiltreCaract_Clicked"></Button>
                 </Grid>
             </StackLayout>
@@ -51,13 +51,13 @@
                     <StackLayout>
                         <ListView x:Name="lvRecette" HasUnevenRows="True" ItemSelected="lvRecette_ItemSelected" >
                             <ListView.ItemTemplate>
-                       <DataTemplate>
+                        <DataTemplate>
                           <ViewCell Height="350">
                           <Frame HasShadow="True" Margin="5" BackgroundColor="Orange">
-                             <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Nom}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                </StackLayout>
+                            <StackLayout>
+                                 <StackLayout Orientation="Horizontal">
+                                 <Label Text="{Binding Nom}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                 </StackLayout>
                                  <StackLayout HeightRequest="20" Orientation="Horizontal">
                                  <Label Text="{Binding Budget}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                  <Label Text="," TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -66,10 +66,10 @@
                                  <StackLayout Orientation="Horizontal">
                                  <Image Source="{Binding UrlImage}" WidthRequest="400" HeightRequest="266" Aspect="Fill" />
                                  </StackLayout>
-                             </StackLayout>
+                            </StackLayout>
                           </Frame>
                           </ViewCell>
-                       </DataTemplate>
+                        </DataTemplate>
                     </ListView.ItemTemplate>
                     </ListView>
                     </StackLayout>
