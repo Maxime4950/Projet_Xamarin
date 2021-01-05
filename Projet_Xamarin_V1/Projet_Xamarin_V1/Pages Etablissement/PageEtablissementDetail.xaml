@@ -49,6 +49,11 @@
                             <!--Huitième champ : caractéristique-->
                             <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Caracteristique:</Label>
                             <Entry x:Name="eCaracteristique" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <Button x:Name="btnVueMaps" Text="Localisation de l'établissement" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnVueMaps_Clicked"/>
+
                         </StackLayout>
                     </StackLayout>
                 </Grid>
