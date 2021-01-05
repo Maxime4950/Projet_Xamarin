@@ -86,9 +86,6 @@
                         </StackLayout>
                     </StackLayout>
                 </Grid>
-                <StackLayout>
-                    <Button x:Name="btnModifierProfil"  Text="Modifier les données" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifierProfil_Clicked"/>
-                </StackLayout>
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
             </StackLayout>
         </ScrollView>

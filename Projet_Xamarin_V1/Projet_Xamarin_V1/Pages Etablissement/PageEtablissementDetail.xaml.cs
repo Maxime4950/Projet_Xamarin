@@ -15,8 +15,12 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageEtablissementDetail : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public string Pseudo = "";
         public int ID = 0;
+        #endregion
+
+        #region CONSTRUCTEUR PageEtablissementDetail
         public PageEtablissementDetail(int id, string pseudo)
         {
             InitializeComponent();
@@ -25,6 +29,11 @@ namespace Projet_Xamarin_V1
             remplirEtablissement(ID);
             remplirLvAvisEtablissement();
         }
+        #endregion
+
+        #region METHODES
+
+        #region Remplissage des détails de l'établissement
         private void remplirEtablissement(int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -44,24 +53,32 @@ namespace Projet_Xamarin_V1
             eCaracteristique.Text = caracteristique.Nom;
             imgEtablissement.Source = remplissage.UrlImage;
         }
+        #endregion
 
+        #region Redirection vers l'ajout d'un avis
         private async void btnAjouterAvis_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageAjouterAvisEtablissement(Pseudo, ID));
         }
+        #endregion
 
+        #region Remplissage de la liste des avis sur l'établissement
         private async void remplirLvAvisEtablissement()
         {
             List<AvisEtablissement> avis = await App.AvisEtablissementRepository.RecupererAllAvisEtablissements(ID);
             lvAvisEtablissement.ItemsSource = avis;
         }
+        #endregion
 
+        #region Refresh de la liste des avis de l'établissements
         private void lvAvisEtablissement_Refreshing(object sender, EventArgs e)
         {
             remplirLvAvisEtablissement();
             lvAvisEtablissement.EndRefresh();
         }
-
+        #endregion
+        
+        #region Maps
         private async void btnVueMaps_Clicked(object sender, EventArgs e)
         {
             var placemark = new Placemark
@@ -75,5 +92,7 @@ namespace Projet_Xamarin_V1
 
             await Map.OpenAsync(placemark, options);
         }
+        #endregion
+        #endregion
     }
 }

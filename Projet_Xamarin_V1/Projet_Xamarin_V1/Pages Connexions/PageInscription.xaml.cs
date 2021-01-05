@@ -29,6 +29,8 @@ namespace Projet_Xamarin_V1
         }
         #endregion
 
+        #region METHODES
+
         #region CONFIRMATION AJOUT USER
         private async void btnConfirmerAjout_Clicked(object sender, EventArgs e)
         {
@@ -198,6 +200,8 @@ namespace Projet_Xamarin_V1
             }
             VerifAge = true;
         }
+        #endregion
+
         #endregion
 
         #endregion

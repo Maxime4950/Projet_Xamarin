@@ -15,18 +15,27 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageModifierCaracteristique : ContentPage
     {
+        #region INITILISATION DES VARIABLES
+        #endregion
+
+        #region CONSTRUCTEUR PageModifierCaracteristique
         public PageModifierCaracteristique()
         {
             InitializeComponent();
             remplirPickerCaracteristiques();
         }
+        #endregion
 
+        #region METHODES
+
+        #region CONFIRMATION DE LA MODIFICATION D'UNE CARACTERISTIQUE
         private async void btnConfirmerModification_Clicked(object sender, EventArgs e)
         {
             if (pCaracteristiques.SelectedItem.ToString() != "" && eNomCaracteristique.Text != "")
             {
                 if (pCaracteristiques.SelectedItem.ToString() != eNomCaracteristique.Text)
                 {
+                    //Vérification pour éviter les doublons
                     if (CaracteristiqueExiste() == false)
                     {
                         await App.CaracteristiquesRepository.ModifierCaracteristiquesAsync(pCaracteristiques.SelectedItem.ToString(), eNomCaracteristique.Text);
@@ -49,7 +58,9 @@ namespace Projet_Xamarin_V1
                 await DisplayAlert("Modification", "Modification échouée car champ(s) vide(s) !", "Ok");
             }
         }
+        #endregion
 
+        #region REMPLISSAGE PICKER CARACTERISTIQUES
         private async void remplirPickerCaracteristiques()
         {
             List<Caracteristiques> caracteristiques = await App.CaracteristiquesRepository.RecupererAllCaracteristiques();
@@ -61,16 +72,9 @@ namespace Projet_Xamarin_V1
                 pCaracteristiques.Items.Add(car.Nom);
             }
         }
+        #endregion
 
-        private async void btnDeconnexion_Clicked(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
-            if (answer == true)
-            {
-                await Navigation.PushAsync(new MainPage());
-            }
-        }
-
+        #region FONCTION QUI VERIFIE SI UNE CARACTERISTIQUE EXISTE DEJA
         private bool CaracteristiqueExiste()
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -84,5 +88,19 @@ namespace Projet_Xamarin_V1
             }
             return false;
         }
+        #endregion
+
+        #region DECONNEXION
+        private async void btnDeconnexion_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
+            if (answer == true)
+            {
+                await Navigation.PushAsync(new MainPage());
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

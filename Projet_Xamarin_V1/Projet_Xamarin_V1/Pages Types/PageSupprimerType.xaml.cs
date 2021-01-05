@@ -15,12 +15,20 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageSupprimerType : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
+        #endregion
+
+        #region CONSTRUCTEUR PageSupprimerType
         public PageSupprimerType()
         {
             InitializeComponent();
             remplirPickerTypes();
         }
+        #endregion
 
+        #region METHODES
+
+        #region Affichage du nom du type en fonction de la selection
         private void pTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (pTypes.Items.Count != 0)
@@ -28,7 +36,9 @@ namespace Projet_Xamarin_V1
                 eNomType.Text = pTypes.SelectedItem.ToString();
             }
         }
+        #endregion
 
+        #region Confirmation de la suppression du type
         private async void btnConfirmerSuppression_Clicked(object sender, EventArgs e)
         {
             if (pTypes.SelectedItem.ToString() != "" && eNomType.Text != "")
@@ -44,7 +54,9 @@ namespace Projet_Xamarin_V1
                 }
             }
         }
+        #endregion
 
+        #region Remplissage du picker type
         private async void remplirPickerTypes()
         {
             List<TypeRecette> types = await App.TypesRepository.RecupererAllTypes();
@@ -54,7 +66,9 @@ namespace Projet_Xamarin_V1
                 pTypes.Items.Add(car.Nom);
             }
         }
+        #endregion
 
+        #region Déconnexion
         private async void btnDeconnexion_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
@@ -63,5 +77,7 @@ namespace Projet_Xamarin_V1
                 await Navigation.PushAsync(new MainPage());
             }
         }
+        #endregion
+        #endregion
     }
 }

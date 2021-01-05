@@ -12,16 +12,22 @@ namespace Projet_Xamarin_V1.Repositories
     public class RecettesRepository
     {
         //Async pour ne pas bloquer l'affichage de la recette pdt un chargement
+        #region INITIALISATON DES VARIABLES
         private SQLiteAsyncConnection connection;
-
         public string StatusMessage { get; set; }
+        #endregion
+
+        #region CONSTRUCTEUR RecettesRepository
         public RecettesRepository(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);
             //Si la table n'existe pas on la crée
             connection.CreateTableAsync<Recettes>();
         }
+        #endregion
 
+        #region METHODES
+        //Ajout d'une recette
         public async Task AjoutNouvelleRecetteAsync(string nom, string ingredients, string description, int budget, string urlimage, int idutilisateur, int idtyperecette, int idcaracteristique)
         {
             int result = 0; //Pour savoir le nombre de recettes ajoutées
@@ -51,6 +57,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Recettes>(); //Si erreur on retourne une liste vide
         }
 
+        //Récupération des recettes créés par l'user (pseudo)
         public async Task<List<Recettes>> RecupererAllRecettesUser(string pseudo)
         {
             try
@@ -68,6 +75,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Recettes>(); //Si erreur on retourne une liste vide
         }
 
+        //Récupération des recettes créés par l'user (id)
         public async Task<List<Recettes>> RecupererAllRecettesUserID(int id)
         {
             try
@@ -82,7 +90,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Recettes>(); //Si erreur on retourne une liste vide
         }
 
-        //Utiliser pour le filtre des recettes selon une caractéristique
+        //Récupération des caractéristiques
         public async Task<List<Recettes>> RecupererAllRecettesCaract(string caract)
         {
             try
@@ -103,6 +111,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Recettes>(); //Si erreur on retourne une liste vide
         }
 
+        //Supprimer une recette avec les caract
         public async Task<bool> SupprimerRecetteAsync(string nom, int budget, string ingredients, string description)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -126,7 +135,7 @@ namespace Projet_Xamarin_V1.Repositories
             return res;
         }
 
-        //Pour la suppression des relations quand on supprime le profil
+        //Supprimer une recette avec l'id
         public async Task<bool> SupprimerRecettesUserAsync(int id)
         {
 
@@ -145,5 +154,6 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
+        #endregion
     }
 }

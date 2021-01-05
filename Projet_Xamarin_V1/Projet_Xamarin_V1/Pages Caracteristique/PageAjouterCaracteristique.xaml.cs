@@ -16,19 +16,25 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageAjouterCaracteristique : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
+        #endregion
+
+        #region CONSTRUCTEUR PageAjouterCaracteristique
         public PageAjouterCaracteristique()
         {
             InitializeComponent();
         }
+        #endregion
 
-       
+        #region METHODES
 
+        #region AJOUT CARACTERISTIQUE
         private async void btnConfirmerAjout_Clicked(object sender, EventArgs e)
         {
             if(eNomCaracteristique.Text != "")
             {
-                await DisplayAlert("Ajout caractéristique", "Ajout de la caractéristique : " + eNomCaracteristique.Text + " reussi.", "OK");
                 await App.CaracteristiquesRepository.AjoutNouvelleCaracteristiqueAsync(eNomCaracteristique.Text);
+                await DisplayAlert("Ajout caractéristique", "Ajout de la caractéristique : " + eNomCaracteristique.Text + " reussi.", "OK");
                 eNomCaracteristique.Text = "";
             }
             else
@@ -36,7 +42,9 @@ namespace Projet_Xamarin_V1
                 await DisplayAlert("Ajout type", "Ajout du type échoué car champ vide", "Ok");
             }
         }
+        #endregion
 
+        #region DECONNEXION
         private async void btnDeconnexion_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
@@ -45,5 +53,8 @@ namespace Projet_Xamarin_V1
                 await Navigation.PushAsync(new MainPage());
             }
         }
+        #endregion
+
+        #endregion
     }
 }

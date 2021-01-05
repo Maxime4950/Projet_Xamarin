@@ -1,5 +1,6 @@
 ﻿using Projet_Xamarin_V1.Models;
 using Projet_Xamarin_V1.Pages_Recette;
+using Projet_Xamarin_V1.Pages_Avis;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Accueil : TabbedPage
     {
+        #region INITIALISATION DES VARIABLES
+        #endregion
+
+        #region CONSTRUCTEUR Accueil
         public Accueil(string pseudo)
         {
             InitializeComponent();
@@ -27,7 +32,13 @@ namespace Projet_Xamarin_V1
             remplirPickerVille(); //Pour le filtrage sur les établissements
             remplirPickerCaract(); //Pour le filtrage sur les caractéristiques
         }
+        #endregion
 
+        #region METHODES
+
+        #region PARTIE PROFIL
+
+        //Permet de remplir les données du profil (Cette fonction sera exécutée au chargement de la page)
         public void remplirProfil(string pseudo)
         {
             ePseudoProfil.Text = pseudo;
@@ -42,12 +53,13 @@ namespace Projet_Xamarin_V1
             eDateNaissanceProfil.Text = remplissage.DateNaissance.ToShortDateString();
         }
 
-
+        //Redirection vers la page de modification du profil
         private async void btnModifierProfil_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageModificationProfil(ePseudoProfil.Text));
         }
 
+        //Permet de supprimer le profil de l'utilisateur
         private async void btnSupprimerProfil_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Question?", "Voulez vous vraiment supprimer votre compte ?", "Oui", "Non");
@@ -86,10 +98,13 @@ namespace Projet_Xamarin_V1
             }
         }
 
+        #region Fonctions pour la suppression des relations
+
+        //Fonction qui supprime tous les avisRecettes de l'user
         private async void SupprimerAvisRecettesUser(int id)
         {
             //Suppression des avis recettes
-            List<AvisRecette> liAvisRecettesUser = await App.AvisRecetteRepository.RecupererAllAvisRecetteUser(id);
+            List<AvisRecette> liAvisRecettesUser = await App.AvisRecetteRepository.RecupererAllAvisRecetteUserID(id);
 
             foreach (var avis in liAvisRecettesUser)
             {
@@ -97,6 +112,7 @@ namespace Projet_Xamarin_V1
             }
         }
 
+        //Fonction qui supprime tous les avis établissements de l'user
         private async void SupprimerAvisEtablissementsUser(int id)
         {
             //Suppression des avis recettes
@@ -108,6 +124,7 @@ namespace Projet_Xamarin_V1
             }
         }
 
+        //Fonction qui supprime tous les établissements créés par l'user
         private async void SupprimerEtablissementsUser(int id)
         {
             //Suppression des avis recettes
@@ -119,6 +136,7 @@ namespace Projet_Xamarin_V1
             }
         }
 
+        //Fonction qui supprime toutes les recettes créés par l'user
         private async void SupprimerRecettesUser(int id)
         {
             //Suppression des avis recettes
@@ -129,39 +147,65 @@ namespace Projet_Xamarin_V1
                 await App.EtablissementsRepository.SupprimerEtablissementUserAsync(recette.Id);
             }
         }
+        #endregion
 
+        #region Redirection vers la page de gestion des établissements de l'user dans le profil
+        //Redirection vers la page de gestion du profil
+        private async void btnGererEtablissementsProfil_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageGererEtablissementsUser(ePseudoProfil.Text));
+        }
+        #endregion
+
+        #region Redirection vers la page de gestion des recettes de l'user dans le profil
+        private async void btnGererRecettesProfil_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageGererRecetteUser(ePseudoProfil.Text));
+        }
+
+        #endregion
+
+        #region Redirection vers la page de gestion des avisRecettes mis par l'user (dans le profil)
+        private async void btnGererAvisRecettes_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageGererAvisRecette(ePseudoProfil.Text));
+        }
+
+        #endregion
+
+        #region Redirection vers la page de gestion des avisEtablissements mis par l'user (dans le profil)
+        private async void btnGererAvisEtablissements_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageGererAvisEtablissement(ePseudoProfil.Text));
+        }
+        #endregion
+
+        #endregion
+
+        #region PARTIE ETABLISSEMENTS
+
+        //Redirection vers la page de création d'un établissement
         private async void AjoutEtablissement_Clicked(object sender, EventArgs e)
         {
             string pseudo = ePseudoProfil.Text;
             await Navigation.PushAsync(new PageAjoutEtablissement(pseudo));
         }
-
-        private async void btnDeconnexion_Clicked(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
-            if (answer == true)
-            {
-                await Navigation.PushAsync(new MainPage());
-            }
-        }
-
-        private async void btnGererEtablissementsProfil_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageGererEtablissementsUser(ePseudoProfil.Text));
-        }
         
+        //Remplissage de l'onglet établissement avec tous les établissements
         private async void remplirLvEtablissement()
         {
             List<Etablissements> etablissements = await App.EtablissementsRepository.RecupererAllEtablissements();
             lvEtablissement.ItemsSource = etablissements;
         }
 
+        //Refresg de la listview des établissements
         private void lvEtablissement_Refreshing(object sender, EventArgs e)
         {
             remplirLvEtablissement();
             lvEtablissement.EndRefresh();
         }
 
+        //Redirection vers la page de détail de l'établissement au clic sur celui-ci
         private async void lvEtablissement_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
@@ -177,54 +221,6 @@ namespace Projet_Xamarin_V1
             {
                 throw;
             }
-        }
-
-        private async void remplirlvRecette()
-        {
-            List<Recettes> recettes = await App.RecettesRepository.RecupererAllRecettes();
-            lvRecette.ItemsSource = recettes;
-
-        }
-
-        private void lvRecette_Refreshing(object sender, EventArgs e)
-        {
-            remplirlvRecette();
-            lvRecette.EndRefresh();
-        }
-
-        private async void lvRecette_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            try
-            {
-                Recettes recettes = (Recettes)lvRecette.SelectedItem;
-                if (recettes == null)
-                    return;
-                await Navigation.PushAsync(new PageRecetteDetail(recettes.Id, ePseudoProfil.Text));
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        private async void btnAjoutRecette_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageAjouterRecette(ePseudoProfil.Text));
-        }
-
-        private async void btnGererRecettesProfil_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageGererRecetteUser(ePseudoProfil.Text));
-        }
-
-        private void btnGererAvisRecettes_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnGererAvisEtablissements_Clicked(object sender, EventArgs e)
-        {
-
         }
 
         #region Filtre ville sur les établissements
@@ -264,6 +260,46 @@ namespace Projet_Xamarin_V1
 
         #endregion
 
+        #endregion
+
+        #region PARTIE RECETTES
+
+        //Remplissage de l'onget recettes avec toutes les recettes
+        private async void remplirlvRecette()
+        {
+            List<Recettes> recettes = await App.RecettesRepository.RecupererAllRecettes();
+            lvRecette.ItemsSource = recettes;
+        }
+
+        //Refresh de la lsitview des établissements
+        private void lvRecette_Refreshing(object sender, EventArgs e)
+        {
+            remplirlvRecette();
+            lvRecette.EndRefresh();
+        }
+
+        //Affichage du détail de la recette au clic sur celle-ci
+        private async void lvRecette_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            try
+            {
+                Recettes recettes = (Recettes)lvRecette.SelectedItem;
+                if (recettes == null)
+                    return;
+                await Navigation.PushAsync(new PageRecetteDetail(recettes.Id, ePseudoProfil.Text));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        //Redirection vers la page d'ajout d'une recette
+        private async void btnAjoutRecette_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageAjouterRecette(ePseudoProfil.Text));
+        }
+
         #region Filtre caractéristique sur les recettes
         private async void btnFiltrerCaracteristiques_Clicked(object sender, EventArgs e)
         {
@@ -295,6 +331,20 @@ namespace Projet_Xamarin_V1
                 pCaracteristiques.Items.Add(carac.Nom);
             }
         }
+        #endregion
+
+        #endregion
+
+        #region DECONNEXION
+        private async void btnDeconnexion_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
+            if (answer == true)
+            {
+                await Navigation.PushAsync(new MainPage());
+            }
+        }
+        #endregion
         #endregion
     }
 }

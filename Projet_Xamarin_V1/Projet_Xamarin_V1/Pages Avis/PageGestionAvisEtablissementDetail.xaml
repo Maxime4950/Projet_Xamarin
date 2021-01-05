@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.Pages_Avis.PageGestionAvisEtablissementDetail">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Etablissement :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <Image x:Name="imgEtablissement" WidthRequest="400" HeightRequest="266" Aspect="Fill" Margin="5,0,0,0"/>
+
+                            <!--Premier champ : nom-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Nom:</Label>
+                            <Entry x:Name="eNom" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Deuxième champ : rue-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Rue:</Label>
+                            <Entry x:Name="eRue" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Troisième champ : numero-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Numero:</Label>
+                            <Entry x:Name="eNumero" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Quatrième champ : ville-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Ville:</Label>
+                            <Entry x:Name="eVille" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Cinquième champ : code postal-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Code Postal:</Label>
+                            <Entry x:Name="eCodePostal" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Sixième champ : pays-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Pays:</Label>
+                            <Entry x:Name="ePays" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Septième champ : budget-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Budget:</Label>
+                            <Entry x:Name="eBudget" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                            <!--Huitième champ : caractéristique-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Caracteristique:</Label>
+                            <Entry x:Name="eCaracteristique" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+
+                <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label FontSize="Large" TextColor="Gray">Votre Avis sur l'Etablissement :</Label>
+                    </StackLayout>
+                </Frame>
+                <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Note:</Label>
+                <Entry x:Name="eNote" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                <!--Deuxième champ : rue-->
+                <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
+                <Entry x:Name="eDestcription" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+                <StackLayout>
+                    <Button x:Name="btnSupprimerAvis" Text="Supprimer l'avis sur cet établissement" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnSupprimerAvis_Clicked"  ImageSource="delete.png"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
