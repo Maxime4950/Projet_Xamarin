@@ -40,7 +40,6 @@ namespace Projet_Xamarin_V1
 
             eMotDePasseProfil.Text = remplissage.MotDePasse; //Pour l'affichage sécurisé
             eEmailProfil.Text = remplissage.Mail;
-            dtpDateNaissanceProfil.Date = remplissage.DateNaissance;
             IDUtilisateur = remplissage.Id;
         }
         #endregion
@@ -48,7 +47,7 @@ namespace Projet_Xamarin_V1
         #region Confirmation de la modification du profil
         private async void btnConfirmerModif_Clicked(object sender, EventArgs e)
         {
-            bool rep = await App.UtilisateursRepository.ModifierUtilisateurAsync(ePseudoProfil.Text, eMotDePasseProfil.Text, eEmailProfil.Text, dtpDateNaissanceProfil.Date, IDUtilisateur);
+            bool rep = await App.UtilisateursRepository.ModifierUtilisateurAsync(ePseudoProfil.Text, eMotDePasseProfil.Text, eEmailProfil.Text, IDUtilisateur);
             if(rep == true)
             {
                 await DisplayAlert("Modification", "La modification à été effectuée avec succès, retour à l'accueil", "OK");

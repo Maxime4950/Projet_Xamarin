@@ -60,12 +60,12 @@ namespace Projet_Xamarin_V1.Repositories
         }
 
         //Modification d'un utilisateur
-        public async Task<bool> ModifierUtilisateurAsync(string pseudo,string mdp, string email, DateTime dateNaissance, int id)
+        public async Task<bool> ModifierUtilisateurAsync(string pseudo,string mdp, string email, int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
             var db = new SQLiteConnection(dpPath);
             var data = db.Table<Utilisateurs>(); //Call Table
-            var utilisateur = data.Where(x => x.Id == id).FirstOrDefault(); //Linq Query 
+            var utilisateur = data.Where(x => x.Id == id).FirstOrDefault(); //Linq Query
 
             bool res = false;
             try
@@ -74,7 +74,7 @@ namespace Projet_Xamarin_V1.Repositories
                     $"SET Pseudo='{pseudo}'," +
                     $"MotDePasse='{mdp}'," +
                     $"Mail='{email}'" +
-                    $",DateNaissance='{dateNaissance.Date}'" +
+                    $",DateNaissance='{utilisateur.DateNaissance}'" +
                     $" WHERE Id={utilisateur.Id}";
 
                 await connection.ExecuteAsync(sql);
