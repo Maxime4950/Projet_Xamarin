@@ -15,15 +15,23 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageAjouterAvisEtablissement : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public int ID = 0;
         string pseudo;
+        #endregion
 
+        #region CONSTRUCTEUR PageAjouterAvisEtablissement
         public PageAjouterAvisEtablissement(string pseudo, int id)
         {
             this.pseudo = pseudo;
             ID = id;
             InitializeComponent();
         }
+        #endregion
+
+        #region METHODES
+
+        #region Confirmation d'ajout d'un avis sur un établissement
         private async void btnConfirmerAjout_Clicked(object sender, EventArgs e)
         {
             if (eNote.Text == "" || eDescription.Text == "")
@@ -43,9 +51,15 @@ namespace Projet_Xamarin_V1
                 await Navigation.PushAsync(new PageEtablissementDetail(ID, pseudo));
             }
         }
+        #endregion
+
+        #region Redirection vers le détail de l'établissement
         private async void btnAnnulerAjout_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageEtablissementDetail(ID, pseudo));
         }
+        #endregion
+
+        #endregion
     }
 }

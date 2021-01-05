@@ -12,16 +12,23 @@ namespace Projet_Xamarin_V1.Repositories
     public class TypesRepository
     {
         //Async pour ne pas bloquer l'affichage de l'utilisateurs pdt un chargement
+        #region INITIALISATION DES VARIABLES
         private SQLiteAsyncConnection connection;
 
         public string StatusMessage { get; set; }
+        #endregion
+
+        #region CONSTRUCTEUR TypesRepository
         public TypesRepository(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);
             //Si la table n'existe pas on la crée
             connection.CreateTableAsync<TypeRecette>();
         }
+        #endregion
 
+        #region METHODES
+        //Ajout d'un type
         public async Task AjoutNouveauTypeAsync(string nom)
         {
             int result = 0; //Pour savoir le nombre d'utlisateurs ajoutés
@@ -51,6 +58,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<TypeRecette>(); //Si erreur on retourne une liste vide
         }
 
+        //Modification d'un type
         public async Task<bool> ModifieTypeAsync(string nom, string nomModif)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -75,6 +83,7 @@ namespace Projet_Xamarin_V1.Repositories
             return res;
         }
 
+        //Suppression d'un type
         public async Task<bool> SupprimerTypeAsync(string nom)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -97,5 +106,6 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
+        #endregion
     }
 }

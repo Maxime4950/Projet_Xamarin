@@ -15,13 +15,18 @@ namespace Projet_Xamarin_V1
 {
     public partial class MainPage : ContentPage
     {
-        #region Constructeur MainPage()
+        #region INITIALISATION DES VARIABLES
+        #endregion
+
+        #region CONSTRUCTEUR MainPage()
         public MainPage()
         {
             InitializeComponent();
             CreerAdmin();
         }
         #endregion
+
+        #region METHODES
 
         #region Navigation vers la page inscription
         private async void btnInscription_Clicked(object sender, EventArgs e)
@@ -79,7 +84,8 @@ namespace Projet_Xamarin_V1
         }
         #endregion
 
-        /*#region Liste des utilisateurs (debug)
+        #region Liste des utilisateurs (debug)
+        /*
          private async void Button_Clicked(object sender, EventArgs e)
        {
            List<Utilisateurs> utilisateurs = await App.UtilisateursRepository.RecupererAllUtilisateurs();
@@ -88,7 +94,9 @@ namespace Projet_Xamarin_V1
            {
                Console.WriteLine($"{user.Pseudo}");
            }
-       }
-       #endregion*/
+       }*/
+        #endregion
+
+        #endregion
     }
 }

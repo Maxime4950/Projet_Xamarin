@@ -16,12 +16,16 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageModifierEtablissement : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public string Pseudo = "";
         public int ID = 0;
         public const string regexnumero = @"^[0-9]{1,3}$";
         public const string regexcodepostal = @"^[0-9]{4}$";
         public const string regexbudget = @"^[0-5]{1}$";
         public string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3");
+        #endregion
+
+        #region CONSTRUCTEUR PageModifierEtablissement
         public PageModifierEtablissement(int id, string pseudo)
         {
             InitializeComponent();
@@ -29,7 +33,11 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
             Pseudo = pseudo;
             ID = id;
         }
+        #endregion
 
+        #region METHODES
+
+        #region Remplissage des infos de l'établissement
         private void remplirEtablissement(int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -48,9 +56,10 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
             eCodePostal.Text = remplissage.CodePostal.ToString();
             eUrl.Text = remplissage.UrlImage;
             remplirPickerCaracteristiques(caracteristique.Nom);
-
         }
-        #region Unfocused
+        #endregion
+
+        #region Sécurité des champs (unfocused)
         private async void eNumero_Unfocused(object sender, FocusEventArgs e)
         {
             if (VerificationNumero(eNumero.Text) == false)
@@ -75,29 +84,9 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
                 eBudget.Text = "";
             }
         }
-        private bool EtablissementExiste(int id)
-        {
-            var db = new SQLiteConnection(dpPath);
-            var data = db.Table<Etablissements>(); //Call Table
-            int Num = int.Parse(eNumero.Text);
-            int CP = int.Parse(eCodePostal.Text);
-            var etablissementExiste = data.Where(x => x.Nom == eNom.Text && x.Rue == eRue.Text && x.Numero == Num && x.CodePostal == CP && x.Ville == eVille.Text && x.Pays == ePays.Text && x.Id != id).FirstOrDefault();
-            if (etablissementExiste != null)
-            {
-                eNom.Text = "";
-                eRue.Text = "";
-                eNumero.Text = "";
-                eCodePostal.Text = "";
-                eVille.Text = "";
-                ePays.Text = "";
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+       
         #endregion
+
         #region Regex
         private bool VerificationNumero(string numero)
         {
@@ -134,6 +123,7 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
         }
 
         #endregion
+
         #region Vérification des longueurs
 
         private async void eNom_TextChanged(object sender, TextChangedEventArgs e)
@@ -170,6 +160,32 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
         }
         #endregion
 
+        #region Vérification si un établissement existe déjà
+        private bool EtablissementExiste(int id)
+        {
+            var db = new SQLiteConnection(dpPath);
+            var data = db.Table<Etablissements>(); //Call Table
+            int Num = int.Parse(eNumero.Text);
+            int CP = int.Parse(eCodePostal.Text);
+            var etablissementExiste = data.Where(x => x.Nom == eNom.Text && x.Rue == eRue.Text && x.Numero == Num && x.CodePostal == CP && x.Ville == eVille.Text && x.Pays == ePays.Text && x.Id != id).FirstOrDefault();
+            if (etablissementExiste != null)
+            {
+                eNom.Text = "";
+                eRue.Text = "";
+                eNumero.Text = "";
+                eCodePostal.Text = "";
+                eVille.Text = "";
+                ePays.Text = "";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region Remplissage du picker caractéristique
         private async void remplirPickerCaracteristiques(string nom)
         {
 
@@ -189,6 +205,9 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
                 }
             }
         }
+        #endregion
+
+        #region Confirmation de la modification
         private async void btnModifierEtablissement_Clicked(object sender, EventArgs e)
         {
             if ((eNom.Text != "" && eRue.Text != "" && eNumero.Text != "" && eCodePostal.Text != "" && eVille.Text != "" && ePays.Text != "" && eBudget.Text != "" && eUrl.Text != "") && EtablissementExiste(ID) == false)
@@ -215,9 +234,15 @@ namespace Projet_Xamarin_V1.Pages_Etablissement
                 await DisplayAlert("Modification Etablissement", "Remplissez tous les champs", "OK");
             }
         }
+        #endregion
+
+        #region Redirection vers la page de détail de l'établissement
         private async void btnAnnulerModification_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageGestionEtablissementDetail(ID, Pseudo));
         }
+        #endregion
+
+        #endregion
     }
 }

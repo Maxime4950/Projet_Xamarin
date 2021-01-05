@@ -16,18 +16,26 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageAjoutEtablissement : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public const string regexnumero = @"^[0-9]{1,3}$";
         public const string regexcodepostal = @"^[0-9]{4}$";
         public const string regexbudget = @"^[0-5]{1}$";
         public string Pseudo = "";
-        public string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
+        public string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database 
+        #endregion
+
+        #region CONSTRUCTEUR PageAjoutEtablissement
         public PageAjoutEtablissement(string pseudo)
         {
             InitializeComponent();
             remplirPickerCaracteristiques();
             Pseudo = pseudo;
         }
+        #endregion
 
+        #region METHODES
+
+        #region Confirmation de l'ajout de l'établissement
         private async void btnConfirmerAjout_Clicked(object sender, EventArgs e)
         {
             if (eNom.Text != "" && eRue.Text != "" && eNumero.Text != "" && eCodePostal.Text != "" && eVille.Text != "" && ePays.Text != "" && eBudget.Text != "" && eUrl.Text != "")
@@ -47,6 +55,9 @@ namespace Projet_Xamarin_V1
                 await DisplayAlert("Ajout Etablissement", "Remplissez tous les champs", "OK");
             }
         }
+        #endregion
+
+        #region Remplissage du picker caracteristique
         private async void remplirPickerCaracteristiques()
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -62,7 +73,9 @@ namespace Projet_Xamarin_V1
                 pCaracteristiques.Items.Add(car.Nom);
             }
         }
-        #region Gestion Etablissement
+        #endregion
+
+        #region Gestion de la sécurité des champs
         private void eNom_Unfocused(object sender, FocusEventArgs e)
         {
             if (eNom.Text != "" && eRue.Text != "" && eNumero.Text != "" && eCodePostal.Text != "" && eVille.Text != "" && ePays.Text != "")
@@ -134,30 +147,9 @@ namespace Projet_Xamarin_V1
                 eBudget.Text = "";
             }
         }
-        private async void EtablissementExiste()
-        {
-            var db = new SQLiteConnection(dpPath);
-            var data = db.Table<Etablissements>(); //Call Table
-            int Num = int.Parse(eNumero.Text);
-            int CP = int.Parse(eCodePostal.Text);
-            var etablissementExiste = data.Where(x => x.Nom == eNom.Text && x.Rue == eRue.Text && x.Numero == Num && x.CodePostal == CP && x.Ville == eVille.Text && x.Pays == ePays.Text).FirstOrDefault();
-            if (etablissementExiste != null)
-            {
-                await DisplayAlert("Ajout Etablissement", etablissementExiste.Nom + " existe déjà.", "OK");
-                eNom.Text = "";
-                eRue.Text = "";
-                eNumero.Text = "";
-                eCodePostal.Text = "";
-                eVille.Text = "";
-                ePays.Text = "";
-            }
-        }
         #endregion
-        private async void btnAnnulerAjout_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Accueil(Pseudo));
-        }
-        #region Regex
+
+        #region Regex utilisé dans la sécurité des champs
         private bool VerificationNumero(string numero)
         {
             if (numero != null)
@@ -193,7 +185,8 @@ namespace Projet_Xamarin_V1
         }
 
         #endregion
-        #region Vérification des longueurs
+
+        #region Vérification des longueurs des champs
 
         private async void eNom_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -227,6 +220,36 @@ namespace Projet_Xamarin_V1
                 ePays.Text = "";
             }
         }
+        #endregion
+
+        #region Vérification si l'établissement existe déjà
+        private async void EtablissementExiste()
+        {
+            var db = new SQLiteConnection(dpPath);
+            var data = db.Table<Etablissements>(); //Call Table
+            int Num = int.Parse(eNumero.Text);
+            int CP = int.Parse(eCodePostal.Text);
+            var etablissementExiste = data.Where(x => x.Nom == eNom.Text && x.Rue == eRue.Text && x.Numero == Num && x.CodePostal == CP && x.Ville == eVille.Text && x.Pays == ePays.Text).FirstOrDefault();
+            if (etablissementExiste != null)
+            {
+                await DisplayAlert("Ajout Etablissement", etablissementExiste.Nom + " existe déjà.", "OK");
+                eNom.Text = "";
+                eRue.Text = "";
+                eNumero.Text = "";
+                eCodePostal.Text = "";
+                eVille.Text = "";
+                ePays.Text = "";
+            }
+        }
+        #endregion
+
+        #region Redirection vers l'accueil
+        private async void btnAnnulerAjout_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Accueil(Pseudo));
+        }
+        #endregion
+
         #endregion
 
     }

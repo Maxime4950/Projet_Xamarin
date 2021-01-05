@@ -11,17 +11,23 @@ namespace Projet_Xamarin_V1.Repositories
 {
     public class CaracteristiquesRepository
     {
+        #region INITIALISATION DES VARIABLES
         //Async pour ne pas bloquer l'affichage de l'utilisateurs pdt un chargement
         private SQLiteAsyncConnection connection;
-
         public string StatusMessage { get; set; }
+        #endregion
+
+        #region CONSTRUCTEUR CaracteristiquesRepository
         public CaracteristiquesRepository(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);
             //Si la table n'existe pas on la crée
             connection.CreateTableAsync<Caracteristiques>();
         }
+        #endregion
 
+        #region METHODES
+        //Ajout d'une nouvelle caractéristique
         public async Task AjoutNouvelleCaracteristiqueAsync(string nom)
         {
             int result = 0; //Pour savoir le nombre d'utlisateurs ajoutés
@@ -51,6 +57,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Caracteristiques>(); //Si erreur on retourne une liste vide
         }
 
+        //Modification d'une caractéristique
         public async Task<bool> ModifierCaracteristiquesAsync(string nom,string nomModif)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -75,6 +82,7 @@ namespace Projet_Xamarin_V1.Repositories
             return res;
         }
 
+        //Suppression d'une caractéristique
         public async Task<bool> SupprimerCaracteristiqueAsync(string nom)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -97,5 +105,6 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
+        #endregion
     }
 }

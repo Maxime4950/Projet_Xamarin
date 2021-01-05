@@ -9,17 +9,24 @@ namespace Projet_Xamarin_V1.Repositories
 {
     public class AvisEtablissementRepository
     {
+        #region INITIALISATION DES VARIABLES
         //Async pour ne pas bloquer l'affichage de l'avis de l'établissement pdt un chargement
         private SQLiteAsyncConnection connection;
-
         public string StatusMessage { get; set; }
+        #endregion
+
+        #region CONSTRUCTEUR AvisEtablissementRepository
         public AvisEtablissementRepository(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);
             //Si la table n'existe pas on la crée
             connection.CreateTableAsync<AvisEtablissement>();
         }
+        #endregion
 
+        #region METHODES
+
+        //Ajout d'un avis
         public async Task AjoutNouvelAvisEtablissementAsync(string description, int note, int idutilisateur, int idetablissement)
         {
             int result = 0; //Pour savoir le nombre d'avis d'établissements ajoutés
@@ -49,6 +56,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<AvisEtablissement>(); //Si erreur on retourne une liste vide
         }
 
+        //Suppression d'un avis
         public async Task<bool> SupprimerAvisEtablissementsUserAsync(int idEtablissement)
         {
             bool res = false;
@@ -66,5 +74,6 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
+        #endregion
     }
 }

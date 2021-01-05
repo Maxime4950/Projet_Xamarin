@@ -15,13 +15,21 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageModificationProfil : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         int IDUtilisateur;
+        #endregion
+
+        #region CONSTRUCTEUR PageModificationProfil
         public PageModificationProfil(string pseudo)
         {
             InitializeComponent();
             remplirProfil(pseudo);
         }
+        #endregion
 
+        #region METHODES
+
+        #region Remplissage des données du profil
         public void remplirProfil(string pseudo)
         {
             ePseudoProfil.Text = pseudo;
@@ -35,14 +43,15 @@ namespace Projet_Xamarin_V1
             dtpDateNaissanceProfil.Date = remplissage.DateNaissance;
             IDUtilisateur = remplissage.Id;
         }
+        #endregion
 
+        #region Confirmation de la modification du profil
         private async void btnConfirmerModif_Clicked(object sender, EventArgs e)
         {
-
             bool rep = await App.UtilisateursRepository.ModifierUtilisateurAsync(ePseudoProfil.Text, eMotDePasseProfil.Text, eEmailProfil.Text, dtpDateNaissanceProfil.Date, IDUtilisateur);
             if(rep == true)
             {
-                await DisplayAlert("Modification", "La modification à été effectuée avec succès", "OK");
+                await DisplayAlert("Modification", "La modification à été effectuée avec succès, retour à l'accueil", "OK");
                 if(ePseudoProfil.Text == "admin")
                 {
                     await Navigation.PushAsync(new AccueilAdmin(ePseudoProfil.Text));
@@ -58,7 +67,9 @@ namespace Projet_Xamarin_V1
             }
      
         }
+        #endregion
 
+        #region Déconnexion
         private async void btnDeconnexion_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
@@ -67,5 +78,8 @@ namespace Projet_Xamarin_V1
                 await Navigation.PushAsync(new MainPage());
             }
         }
+        #endregion
+
+        #endregion
     }
 }

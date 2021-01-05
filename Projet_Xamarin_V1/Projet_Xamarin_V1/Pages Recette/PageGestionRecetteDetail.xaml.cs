@@ -13,10 +13,15 @@ using Xamarin.Forms.Xaml;
 namespace Projet_Xamarin_V1.Pages_Recette
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    //Pour la gestion dans le profil
     public partial class PageGestionRecetteDetail : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public string Pseudo = "";
         public int ID = 0;
+        #endregion
+
+        #region CONSTRUCTEUR PageGestionRecetteDetail
         public PageGestionRecetteDetail(int id, string pseudo)
         {
             InitializeComponent();
@@ -24,7 +29,9 @@ namespace Projet_Xamarin_V1.Pages_Recette
             Pseudo = pseudo;
             remplirRecette(ID);
         }
+        #endregion
 
+        #region Remplissage des infos de la recette
         private void remplirRecette(int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -47,7 +54,9 @@ namespace Projet_Xamarin_V1.Pages_Recette
             eCaracteristique.Text = caracteristique.Nom;
             eType.Text = type.Nom;
         }
+        #endregion
 
+        #region Suppresion de la recette
         private async void btnSupprimer_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Question?", "Voulez vous vraiment supprimer votre recette ?", "Oui", "Non");
@@ -69,10 +78,13 @@ namespace Projet_Xamarin_V1.Pages_Recette
                 await DisplayAlert("Suppression", "Suppression annulée", "OK");
             }
         }
+        #endregion
 
+        #region Redirection vers la page de modification de la recette
         private void btnModifier_Clicked(object sender, EventArgs e)
         {
 
         }
+        #endregion
     }
 }

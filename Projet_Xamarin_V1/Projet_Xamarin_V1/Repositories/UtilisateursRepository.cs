@@ -12,17 +12,23 @@ namespace Projet_Xamarin_V1.Repositories
     //Classe qui gère les données
     public class UtilisateursRepository
     {
+        #region INITIALISATION DES VARIABLES
         //Async pour ne pas bloquer l'affichage de l'utilisateurs pdt un chargement
         private SQLiteAsyncConnection connection;
-
         public string StatusMessage { get; set; }
+        #endregion
+
+        #region CONSTRUCTEUR UtilisateursRepository
         public UtilisateursRepository(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);
             //Si la table n'existe pas on la crée
             connection.CreateTableAsync<Utilisateurs>();
         }
+        #endregion
 
+        #region METHODES
+        //Ajout d'un nouvel utilisateur
         public async Task AjoutNouvelUtilisateurAsync(string pseudo, string motDePasse, string mail, DateTime dateInscription, DateTime dateNaissance )
         {
             int result = 0; //Pour savoir le nombre d'utlisateurs ajoutés
@@ -53,6 +59,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Utilisateurs>(); //Si erreur on retourne une liste vide
         }
 
+        //Modification d'un utilisateur
         public async Task<bool> ModifierUtilisateurAsync(string pseudo,string mdp, string email, DateTime dateNaissance, int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -80,6 +87,7 @@ namespace Projet_Xamarin_V1.Repositories
             return res;
         }
 
+        //Suppression d'un utilisateur
         public async Task<bool> SupprimerUtilisateurAsync(string pseudo)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -102,8 +110,8 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
-
+        #endregion
     }
 
-   
+
 }

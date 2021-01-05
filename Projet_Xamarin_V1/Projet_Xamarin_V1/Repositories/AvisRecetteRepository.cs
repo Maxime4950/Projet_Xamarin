@@ -11,17 +11,23 @@ namespace Projet_Xamarin_V1.Repositories
 {
     public class AvisRecetteRepository
     {
+        #region INITIALISATION DES VARIABLES
         //Async pour ne pas bloquer l'affichage de l'avis d'une recette pdt un chargement
         private SQLiteAsyncConnection connection;
-
         public string StatusMessage { get; set; }
+        #endregion
+
+        #region CONSTRUCTEUR  AvisRecetteRepository
         public AvisRecetteRepository(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);
             //Si la table n'existe pas on la crée
             connection.CreateTableAsync<AvisRecette>();
         }
+        #endregion
 
+        #region METHODES
+        //Ajout d'avis recette
         public async Task AjoutNouvelAvisRecetteAsync(string description, int note, int idutilisateur, int idrecette)
         {
             int result = 0; //Pour savoir le nombre d'avis de recettes ajoutés
@@ -51,6 +57,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<AvisRecette>(); //Si erreur on retourne une liste vide
         }
 
+        //Récupération de tous les avis d'un utilisateur
         public async Task<List<AvisRecette>> RecupererAllAvisRecetteUser(int id)
         {
             try
@@ -68,6 +75,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<AvisRecette>(); //Si erreur on retourne une liste vide
         }
 
+        //Suppression d'un avis recette
         public async Task<bool> SupprimerAvisRecettesUserAsync(int idRecette)
         {
             bool res = false;
@@ -85,5 +93,6 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
+        #endregion
     }
 }

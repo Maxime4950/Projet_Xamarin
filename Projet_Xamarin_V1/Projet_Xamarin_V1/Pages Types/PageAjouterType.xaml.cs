@@ -12,11 +12,19 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageAjouterType : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
+        #endregion
+
+        #region CONSTRUCTEUR pageAjouterType
         public PageAjouterType()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region METHODES
+
+        #region Confirmation de l'ajout du type
         private async void btnConfirmerAjout_Clicked(object sender, EventArgs e)
         {
             if (eNomType.Text != "")
@@ -30,7 +38,9 @@ namespace Projet_Xamarin_V1
                 await DisplayAlert("Ajout type", "Ajout du type échoué car champ vide", "Ok");
             }
         }
+        #endregion
 
+        #region Déconnexion
         private async void btnDeconnexion_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
@@ -39,5 +49,8 @@ namespace Projet_Xamarin_V1
                 await Navigation.PushAsync(new MainPage());
             }
         }
+        #endregion
+
+        #endregion
     }
 }

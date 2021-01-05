@@ -11,6 +11,7 @@ namespace Projet_Xamarin_V1
 {
     public partial class App : Application
     {
+        #region INITIALISATION DES VARIABLES
         //Création du fichier de bd avec SQLITE3
         private string dbPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3");
 
@@ -23,10 +24,13 @@ namespace Projet_Xamarin_V1
         public static AvisEtablissementRepository AvisEtablissementRepository { get; private set; } //Private set car on ne veut y accéder que sur cette partie du programme
 
         public static AvisRecetteRepository AvisRecetteRepository { get; private set; } //Private set car on ne veut y accéder que sur cette partie du programme
+        #endregion
 
+        #region CONSTRUCTEUR App
         public App()
         {
             InitializeComponent();
+            //Déclaration de tous les repositories
             UtilisateursRepository = new UtilisateursRepository(dbPath);
             EtablissementsRepository = new EtablissementsRepository(dbPath);
             RecettesRepository = new RecettesRepository(dbPath);
@@ -34,10 +38,10 @@ namespace Projet_Xamarin_V1
             TypesRepository = new TypesRepository(dbPath);
             AvisEtablissementRepository = new AvisEtablissementRepository(dbPath);
             AvisRecetteRepository = new AvisRecetteRepository(dbPath);
+            //MainPage
             MainPage = new NavigationPage(new MainPage());
-           
-            //Console.WriteLine(dbPath);
         }
+        #endregion
 
         protected override void OnStart()
         {

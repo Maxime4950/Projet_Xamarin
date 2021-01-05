@@ -12,16 +12,21 @@ namespace Projet_Xamarin_V1.Repositories
     public class EtablissementsRepository
     {
         //Async pour ne pas bloquer l'affichage de l'établissement pdt un chargement
+        #region INITIALISATION DES VARIABLES
         private SQLiteAsyncConnection connection;
-
         public string StatusMessage { get; set; }
+        #endregion
+
+        #region CONSTRUCTEUR EtablissementsReposiroy
         public EtablissementsRepository(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);
             //Si la table n'existe pas on la crée
             connection.CreateTableAsync<Etablissements>();
         }
+        #endregion
 
+        #region METHODES
         public async Task AjoutNouvelEtablissementAsync(string nom, string rue, int numero, string ville, int codepostal, string pays, int budget, string urlimage, int idutilisateur, int idcaracteristique)
         {
             int result = 0; //Pour savoir le nombre d'etablissements ajoutés
@@ -51,6 +56,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Etablissements>(); //Si erreur on retourne une liste vide
         }
 
+        //Récupération des établissements de l'user (pseudo)
         public async Task<List<Etablissements>> RecupererAllEtablissementsUser(string pseudo)
         {
             try
@@ -68,6 +74,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Etablissements>(); //Si erreur on retourne une liste vide
         }
 
+        //Récupération des établissements de l'user (ID)
         public async Task<List<Etablissements>> RecupererAllEtablissementsUserID(int id)
         {
             try
@@ -81,6 +88,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Etablissements>(); //Si erreur on retourne une liste vide
         }
 
+        //Récupération des villes pour le filtre dans les établissements
         public async Task<List<Etablissements>> RecupererAllEtablissementsVille(string ville)
         {
             try
@@ -96,6 +104,7 @@ namespace Projet_Xamarin_V1.Repositories
             return new List<Etablissements>(); //Si erreur on retourne une liste vide
         }
 
+        //Modification d'un établissement
         public async Task<bool> ModifierEtablissementAsync(string nom, string rue, int numero, string ville, int codepostal, string pays, int budget, string urlimage, int idcaracteristique, int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -128,6 +137,7 @@ namespace Projet_Xamarin_V1.Repositories
             return res;
         }
 
+        //Suppression d'un établissement (avec caract)
         public async Task<bool> SupprimerEtablissementAsync(string nom, string rue, int numero, string ville, int codepostal, string pays)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -151,7 +161,7 @@ namespace Projet_Xamarin_V1.Repositories
             return res;
         }
 
-        //Pour la suppression des relations quand on supprime le profil
+        //Suppresion d'un établissement (avec ID)
         public async Task<bool> SupprimerEtablissementUserAsync(int id)
         {
 
@@ -170,5 +180,6 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
+        #endregion
     }
 }
