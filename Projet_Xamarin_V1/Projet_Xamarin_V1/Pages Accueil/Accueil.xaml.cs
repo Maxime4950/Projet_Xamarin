@@ -1,5 +1,6 @@
 ﻿using Projet_Xamarin_V1.Models;
 using Projet_Xamarin_V1.Pages_Recette;
+using Projet_Xamarin_V1.Pages_Avis;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -175,9 +176,9 @@ namespace Projet_Xamarin_V1
         #endregion
 
         #region Redirection vers la page de gestion des avisEtablissements mis par l'user (dans le profil)
-        private void btnGererAvisEtablissements_Clicked(object sender, EventArgs e)
+        private async void btnGererAvisEtablissements_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new PageGererAvisEtablissement(ePseudoProfil.Text));
         }
         #endregion
 
