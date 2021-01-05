@@ -15,12 +15,20 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageModifierType : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
+        #endregion
+
+        #region CONSTRUCTEUR PageModifierType
         public PageModifierType()
         {
             InitializeComponent();
             remplirPickerTypes();
         }
+        #endregion
 
+        #region METHODES
+
+        #region Confirmation de la modification
         private async void btnConfirmerModification_Clicked(object sender, EventArgs e)
         {
             if (pTypes.SelectedItem.ToString() != "" && eNomType.Text != "")
@@ -49,7 +57,9 @@ namespace Projet_Xamarin_V1
                 await DisplayAlert("Modification", "Modification échouée car champ(s) vide(s) !", "Ok");
             }
         }
+        #endregion
 
+        #region Remplissage du picker type
         private async void remplirPickerTypes()
         {
             List<TypeRecette> types = await App.TypesRepository.RecupererAllTypes();
@@ -59,16 +69,9 @@ namespace Projet_Xamarin_V1
                 pTypes.Items.Add(car.Nom);
             }
         }
+        #endregion
 
-        private async void btnDeconnexion_Clicked(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
-            if (answer == true)
-            {
-                await Navigation.PushAsync(new MainPage());
-            }
-        }
-
+        #region Verification si le type existe déjà dans la bd pour éviter les doublons
         private bool typeExiste()
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -82,5 +85,19 @@ namespace Projet_Xamarin_V1
             }
             return false;
         }
+        #endregion
+
+        #region Déconnexion
+        private async void btnDeconnexion_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Déconnexion", "Voulez vous vraiment vous déconnecter ?", "Oui", "Non");
+            if (answer == true)
+            {
+                await Navigation.PushAsync(new MainPage());
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

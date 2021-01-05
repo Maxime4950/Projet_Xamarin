@@ -15,18 +15,22 @@ namespace Projet_Xamarin_V1.Pages_Recette
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageRecetteDetail : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public string Pseudo = "";
         public int ID = 0;
+        #endregion
 
+        #region CONSTRUCTEUR PageRecetteDetail
         public PageRecetteDetail(int id, string pseudo)
         {
             InitializeComponent();
             Pseudo = pseudo;
             ID = id;
             remplirRecette(ID);
-
         }
+        #endregion
 
+        #region Remplissage du détail de la recette
         private void remplirRecette(int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -49,10 +53,13 @@ namespace Projet_Xamarin_V1.Pages_Recette
             eCaracteristique.Text = caracteristique.Nom;
             eType.Text = type.Nom;
         }
+        #endregion
 
+        #region Redirection vers l'ajout d'un avis
         private async void btnAjouterAvis_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageAjouterAvisRecettes(Pseudo, ID));
         }
+        #endregion
     }
 }

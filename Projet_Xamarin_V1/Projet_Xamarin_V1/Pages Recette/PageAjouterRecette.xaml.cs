@@ -18,9 +18,13 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageAjouterRecette : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public const string regexbudget = @"^[0-5]{1}$";
         public string Pseudo = "";
         public string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3");
+        #endregion
+
+        #region CONSTRUCTEUR PageAjouterRecette
         public PageAjouterRecette(string pseudo)
         {
             InitializeComponent();
@@ -28,7 +32,9 @@ namespace Projet_Xamarin_V1
             remplirPickerTypeRecette();
             Pseudo = pseudo;
         }
+        #endregion
 
+        #region Confirmation de l'ajout
         private async void btnConfirmerAjout_Clicked(object sender, EventArgs e)
         {
             if (eNomRecette.Text != "" && eBudget.Text != "" && eIngredients.Text != "" && eDescription.Text != "")
@@ -56,7 +62,9 @@ namespace Projet_Xamarin_V1
                 await DisplayAlert("AjoutRecette", "Remplissez tous les champs", "OK");
             }
         }
+        #endregion
 
+        #region Remplissage du picker caractéristique
         private async void remplirPickerCaracteristiques()
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -72,7 +80,9 @@ namespace Projet_Xamarin_V1
                 pCaract.Items.Add(car.Nom);
             }
         }
+        #endregion
 
+        #region Remplissage du picker typerecette
         private async void remplirPickerTypeRecette()
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3");
@@ -86,18 +96,16 @@ namespace Projet_Xamarin_V1
                 pType.Items.Add(typ.Nom);
             }
         }
+        #endregion
 
+        #region Redirection vers l'accueil
         private async void btnAnnulerAjout_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Accueil(Pseudo));
         }
+        #endregion
 
-        private async void btnAjoutTypeRecette_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageAjouterRecette(eNomRecette.Text));
-        }
-
-        #region si champ vide
+        #region Sécurité des champs (unfocused)
         private async void eNomRecette_Unfocused(object sender, FocusEventArgs e)
         {
             if (eNomRecette.Text == "")
@@ -128,8 +136,16 @@ namespace Projet_Xamarin_V1
                 eBudget.Text = "";
             }
         }
+        private async void eUrl_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (eUrl.Text == "")
+            {
+                await DisplayAlert("AjoutRecette", "Url manquant", "OK");
+            }
+        }
 
         #endregion
+
         #region Verif longueur
 
         private async void eNomRecette_TextChanged(object sender, TextChangedEventArgs e)
@@ -161,6 +177,8 @@ namespace Projet_Xamarin_V1
 
 
         #endregion
+
+        #region Verif regex
         private bool VerifBudget(string budget)
         {
             if (budget != null)
@@ -172,13 +190,6 @@ namespace Projet_Xamarin_V1
                 return false;
             }
         }
-
-        private async void eUrl_Unfocused(object sender, FocusEventArgs e)
-        {
-            if (eUrl.Text == "")
-            {
-                await DisplayAlert("AjoutRecette", "Url manquant", "OK");
-            }
-        }
+        #endregion
     }
 }

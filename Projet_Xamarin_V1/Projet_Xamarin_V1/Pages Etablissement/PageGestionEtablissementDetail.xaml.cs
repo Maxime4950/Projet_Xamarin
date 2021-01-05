@@ -16,8 +16,12 @@ namespace Projet_Xamarin_V1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageGestionEtablissementDetail : ContentPage
     {
+        #region INITIALISATION DES VARIABLES
         public string Pseudo = "";
         public int ID = 0;
+        #endregion
+
+        #region CONSTRUCTEUR PageGestionEtablissementDetail
         public PageGestionEtablissementDetail(int id, string pseudo)
         {
             InitializeComponent();
@@ -26,7 +30,11 @@ namespace Projet_Xamarin_V1
             remplirEtablissement(ID);
             remplirLvAvisEtablissement();
         }
+        #endregion
 
+        #region METHODES
+
+        #region Suppression de l'établissement
         private async void btnSupprimer_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Question?", "Voulez vous vraiment supprimer votre établissement ?", "Oui", "Non");
@@ -48,7 +56,9 @@ namespace Projet_Xamarin_V1
                 await DisplayAlert("Suppression", "Suppression annulée", "OK");
             }
         }
+        #endregion
 
+        #region Remplisage du détail de l'établissement
         private void remplirEtablissement(int id)
         {
             string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
@@ -68,21 +78,31 @@ namespace Projet_Xamarin_V1
             eCaracteristique.Text = caracteristique.Nom;
             imgEtablissement.Source = remplissage.UrlImage;
         }
+        #endregion
+
+        #region Redirection vers la modification de l'établissement
         private async void btnModifier_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageModifierEtablissement(ID, Pseudo));
         }
+        #endregion
 
+        #region Remplissage de la liste des avis
         private async void remplirLvAvisEtablissement()
         {
             List<AvisEtablissement> avis = await App.AvisEtablissementRepository.RecupererAllAvisEtablissements(ID);
             lvAvisEtablissement.ItemsSource = avis;
         }
+        #endregion
 
+        #region Refresh de la liste des avis
         private void lvAvisEtablissement_Refreshing(object sender, EventArgs e)
         {
             remplirLvAvisEtablissement();
             lvAvisEtablissement.EndRefresh();
         }
+        #endregion
+
+        #endregion
     }
 }
