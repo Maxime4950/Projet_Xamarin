@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projet_Xamarin_V1.Pages_Recette.PageModifierRecette">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0">
+                <Grid>
+                    <StackLayout Margin="0,0,10,0">
+                        <StackLayout>
+                            <!--Titre-->
+                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label FontSize="Large" TextColor="Gray">Modification Recette :</Label>
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                            <!--Premier champ : nom-->
+                            <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Nom :</Label>
+                            <Entry x:Name="eNom" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="eNom_TextChanged"></Entry>
+
+                            <!--Deuxième champ : budget-->
+                            <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Budget :</Label>
+                            <Entry x:Name="eBudget" Margin="10,0,0,0" FontSize="Small" Text=""  Unfocused="eBudget_Unfocused"></Entry>
+
+                            <!--Troisième champ : Ingerdients-->
+                            <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Ingredients:</Label>
+                            <Entry x:Name="eIngredients" Margin="10,0,0,0" FontSize="Small" Unfocused="eIngredients_Unfocused" ></Entry>
+
+                            <!-- Quatrième champ : Description-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
+                            <Editor x:Name="eDescription" Margin="10,0,0,0" FontSize="Small" Text="" TextChanged="eDescription_TextChanged"></Editor>
+
+                            <!--Huitième champ : image-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Url de l'image:</Label>
+                            <Entry x:Name="eUrl" Margin="10,0,0,0" FontSize="Small" Text=""></Entry>
+
+                            <!--Neuvième champ : Caracteristiques-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Caractéristiques:</Label>
+                            <Picker x:Name="pCaracteristiques" WidthRequest="200" FontSize="Small" Margin="10,0,0,0"></Picker>
+
+                            <!--Sixième champ : Type-->
+                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Type:</Label>
+                            <Picker x:Name="pType"  WidthRequest="200" FontSize="Small" Margin="10,0,0,0" ></Picker>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+                <StackLayout>
+                    <Button x:Name="btnModifierRecette"  Text="Modifier" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifierRecette_Clicked" />
+                    <Button x:Name="btnAnnulerModification"  Text="Annuler" BackgroundColor="OrangeRed" Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnAnnulerModification_Clicked"/>
+                </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

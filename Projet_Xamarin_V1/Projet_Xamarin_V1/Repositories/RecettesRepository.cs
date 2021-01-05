@@ -154,6 +154,37 @@ namespace Projet_Xamarin_V1.Repositories
             }
             return res;
         }
+
+        public async Task<bool> ModifierRecettesAsync(string nom, int budget, string ingredients, string description, string urlimage, int idcaracteristique, int idtype, int id)
+        {
+            string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database
+            var db = new SQLiteConnection(dpPath);
+            var data = db.Table<Recettes>(); // Call Table
+            var recettes = data.Where(x => x.Id == id).FirstOrDefault(); //Linq Query
+
+            bool res = false;
+            try
+            {
+                string sql = $"UPDATE Recettes " +
+                    $"SET Nom='{nom}'" +
+                    $",Budget='{budget}'" +
+                    $",Ingredients='{ingredients}'" +
+                    $",Description='{description}'" +
+                    $",UrlImage='{urlimage}'" +
+                    $",IdCaracteristiques='{idcaracteristique}'" +
+                    $",IdTypeRecette='{idtype}'" +
+                    $" WHERE Id={recettes.Id}";
+
+                await connection.ExecuteAsync(sql);
+                res = true;
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return res;
+        }
         #endregion
     }
 }

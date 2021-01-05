@@ -81,9 +81,9 @@ namespace Projet_Xamarin_V1.Pages_Recette
         #endregion
 
         #region Redirection vers la page de modification de la recette
-        private void btnModifier_Clicked(object sender, EventArgs e)
+        private async void btnModifier_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new PageModifierRecette(ID, Pseudo));
         }
         #endregion
     }
