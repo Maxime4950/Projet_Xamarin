@@ -47,12 +47,8 @@
                             <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Mot de passe:</Label>
                             <Entry x:Name="eMotDePasseProfil" Margin="10,0,0,0" FontSize="Small"></Entry>
 
-                            <!-- Quatrième champ : Date de naissance-->
-                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Date de naissance:</Label>
-                            <DatePicker x:Name="dtpDateNaissanceProfil" Margin="10,0,0,0" FontSize="Small"></DatePicker>
-                            
                         </StackLayout>
-                        <Button x:Name="btnConfirmerModif" Text="Confirmer Modification" Clicked="btnConfirmerModif_Clicked"></Button>
+                        <Button x:Name="btnConfirmerModif" Text="Confirmer Modification" Clicked="btnConfirmerModif_Clicked" TextColor="White" BackgroundColor="OrangeRed"></Button>
                     </StackLayout>
                   
                 </Grid>
