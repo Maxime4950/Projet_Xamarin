@@ -37,6 +37,17 @@ namespace Projet_Xamarin_V1
         #region Suppression de l'établissement
         private async void btnSupprimer_Clicked(object sender, EventArgs e)
         {
+            //Connexion bd
+            string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
+            var db = new SQLiteConnection(dpPath);
+
+            //Récupération de l'id utilisateur
+            var dataUser = db.Table<Etablissements>(); //Call Table
+            var etablissements = dataUser.Where(x => x.Id == ID).FirstOrDefault(); //Linq Query
+
+            //Suppression des relations
+            SupprimerAvisEtablissementsUser(etablissements.Id);
+
             bool answer = await DisplayAlert("Question?", "Voulez vous vraiment supprimer votre établissement ?", "Oui", "Non");
             if (answer == true)
             {
@@ -54,6 +65,20 @@ namespace Projet_Xamarin_V1
             else
             {
                 await DisplayAlert("Suppression", "Suppression annulée", "OK");
+            }
+        }
+        #endregion
+
+        #region Fonction pour la suppression des relations
+        //Fonction qui supprime tous les avis établissements de l'user
+        private async void SupprimerAvisEtablissementsUser(int id)
+        {
+            //Suppression des avis recettes
+            List<AvisEtablissement> liAvisEtablissements = await App.AvisEtablissementRepository.RecupererAllAvisEtablissements(id);
+
+            foreach (var avis in liAvisEtablissements)
+            {
+                await App.AvisEtablissementRepository.SupprimerAvisEtablissementsUserAsync(avis.Id);
             }
         }
         #endregion

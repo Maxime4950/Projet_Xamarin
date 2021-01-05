@@ -36,7 +36,7 @@
                                             <StackLayout>
 
                                                 <StackLayout HeightRequest="20" Orientation="Horizontal">
-                                                    <Label Text="{Binding Note, StringFormat='{0:0}/5,'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                    <Label Text="{Binding Note, StringFormat='{0:0}/10,'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                                     <Label Text="{Binding Description}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                                 </StackLayout>
                                             </StackLayout>
