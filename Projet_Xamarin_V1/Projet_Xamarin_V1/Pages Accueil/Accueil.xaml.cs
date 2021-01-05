@@ -104,7 +104,7 @@ namespace Projet_Xamarin_V1
         private async void SupprimerAvisRecettesUser(int id)
         {
             //Suppression des avis recettes
-            List<AvisRecette> liAvisRecettesUser = await App.AvisRecetteRepository.RecupererAllAvisRecetteUser(id);
+            List<AvisRecette> liAvisRecettesUser = await App.AvisRecetteRepository.RecupererAllAvisRecetteUserID(id);
 
             foreach (var avis in liAvisRecettesUser)
             {
@@ -166,12 +166,10 @@ namespace Projet_Xamarin_V1
         #endregion
 
         #region Redirection vers la page de gestion des avisRecettes mis par l'user (dans le profil)
-        private void btnGererAvisRecettes_Clicked(object sender, EventArgs e)
+        private async void btnGererAvisRecettes_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new PageGererAvisRecette(ePseudoProfil.Text));
         }
-
-
 
         #endregion
 

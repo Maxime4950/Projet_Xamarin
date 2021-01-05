@@ -46,7 +46,13 @@
     <EmbeddedResource Update="Pages Avis\PageGererAvisEtablissement.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages Avis\PageGererAvisRecette.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages Avis\PageGestionAvisEtablissementDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages Avis\PageGestionAvisRecettesDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages Etablissement\PageEtablissementDetail.xaml">

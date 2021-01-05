@@ -44,11 +44,11 @@ namespace Projet_Xamarin_V1.Repositories
         }
 
         //Récupération de tous les avis de recette (pour debug)
-        public async Task<List<AvisRecette>> RecupererAllAvisRecette()
+        public async Task<List<AvisRecette>> RecupererAllAvisRecette(int id)
         {
             try
             {
-                return await connection.Table<AvisRecette>().ToListAsync();
+                return await connection.Table<AvisRecette>().Where(x => x.IdRecette == id).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -58,15 +58,29 @@ namespace Projet_Xamarin_V1.Repositories
         }
 
         //Récupération de tous les avis d'un utilisateur
-        public async Task<List<AvisRecette>> RecupererAllAvisRecetteUser(int id)
+        public async Task<List<AvisRecette>> RecupererAllAvisRecetteUser(string pseudo)
         {
             try
             {
                 string dpPath = Path.Combine(FileSystem.AppDataDirectory, "databaseXamarin.db3"); //Call Database  
                 var db = new SQLiteConnection(dpPath);
                 var data = db.Table<Utilisateurs>(); //Call Table
-                var user = data.Where(x => x.Id == id).FirstOrDefault(); //Linq Query 
+                var user = data.Where(x => x.Pseudo == pseudo).FirstOrDefault(); //Linq Query 
                 return await connection.Table<AvisRecette>().Where(x => x.IdUtilisateur == user.Id).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Impossible de récupérer la liste des avis recettes.\n Erreur : {ex.Message}";
+            }
+            return new List<AvisRecette>(); //Si erreur on retourne une liste vide
+        }
+
+        //Récupération de tous les avis d'un utilisateur (id)
+        public async Task<List<AvisRecette>> RecupererAllAvisRecetteUserID(int id)
+        {
+            try
+            {
+                return await connection.Table<AvisRecette>().Where(x => x.IdUtilisateur == id).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -83,6 +97,25 @@ namespace Projet_Xamarin_V1.Repositories
             {
                 string sql = $"DELETE FROM AvisRecette " +
                     $" WHERE Id={idRecette}";
+
+                await connection.ExecuteAsync(sql);
+                res = true;
+            }
+            catch (Exception)
+            {
+
+            }
+            return res;
+        }
+
+        //Suppression d'un avis unique
+        public async Task<bool> SupprimerAvisRecetteAsync(int idAvis)
+        {
+            bool res = false;
+            try
+            {
+                string sql = $"DELETE FROM AvisRecette " +
+                    $" WHERE Id={idAvis}";
 
                 await connection.ExecuteAsync(sql);
                 res = true;
