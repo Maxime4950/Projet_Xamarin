@@ -24,7 +24,7 @@
                         <Label Margin="5,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
                         <Editor x:Name="eDescription" Margin="10,0,0,0" FontSize="Small" AutoSize="TextChanges"></Editor>
                         <!-- Bouton-->
-                        <Button x:Name="btnConfirmerAjout"  Text="Confirmer" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
+                        <Button x:Name="btnConfirmerAjout"  Text="CONFIRMER" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
                         <Button x:Name="btnAnnulerAjout"  Text="ANNULER" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnAnnulerAjout_Clicked"/>
 

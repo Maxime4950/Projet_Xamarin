@@ -26,7 +26,7 @@
                         
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
                         <!-- Bouton-->
-                        <Button x:Name="btnConfirmerAjout"  Text="CONFIRMERS" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
+                        <Button x:Name="btnConfirmerAjout"  Text="CONFIRMER" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
                         <Button x:Name="btnAnnulerAjout"  Text="ANNULER" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnAnnulerAjout_Clicked"/>
 
 
