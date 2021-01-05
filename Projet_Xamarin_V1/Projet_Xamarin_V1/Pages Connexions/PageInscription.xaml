@@ -3,68 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projet_Xamarin_V1.PageInscription">
     <ContentPage.Content>
-        <StackLayout Padding="0">
-            <Grid>
-                <StackLayout Padding="0" Margin="0">
-                    <Image  Source="img_menu.png" WidthRequest="500"/>
-                </StackLayout>
-                <StackLayout Margin="15,150,15,0">
-                    <Frame BackgroundColor="White" HasShadow="True" HeightRequest="500" HorizontalOptions="FillAndExpand">
-                        <StackLayout>
-                            <!--LABEL TITRE-->
-                            <StackLayout HorizontalOptions="CenterAndExpand">
-                                <Label Text="INSCRIPTION" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
-                            </StackLayout>
-                            <!--ENSEMBLE DES ENTRY-->
-                            <StackLayout Margin="0,25,0,0">
-                                <!--ENTRY EMAIL-->
-                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0" CornerRadius="50" HorizontalOptions="FillAndExpand">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
-                                        <Entry x:Name="eEmail" Placeholder="Email" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" TextChanged="eEmail_TextChanged" Unfocused="eEmail_Unfocused"/>
-                                    </StackLayout>
-                                </Frame>
-                                <!--ENTRY MOT DE PASSE-->
-                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
-                                        <Entry x:Name="eMotDePasse" Placeholder="Mot de passe" IsPassword="True" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" TextChanged="eMotDePasse_TextChanged" Unfocused="eMotDePasse_Unfocused"/>
-                                    </StackLayout>
-                                </Frame>
-                                <!--ENTRY CONFIRMER MOT DE PASSE-->
-                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
-                                        <Entry x:Name="eConfirmerMotDePasse" Placeholder="Confirmer mot de passe" IsPassword="True" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" TextChanged="eConfirmerMotDePasse_TextChanged" Unfocused="eConfirmerMotDePasse_Unfocused"/>
-                                    </StackLayout>
-                                </Frame>
-                                <!--ENTRY PSEUDO-->
-                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
-                                        <Entry x:Name="ePseudo" Placeholder="Pseudo" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" Unfocused="ePseudo_Unfocused"/>
-                                    </StackLayout>
-                                </Frame>
-                                <!--ENTRY DATE DE NAISSANCE-->
-                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
-                                        <DatePicker x:Name="dtpDateDeNaissance"  TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" DateSelected="dtpDateDeNaissance_DateSelected"/>
-                                    </StackLayout>
-                                </Frame>
-                            </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="0">
+                <Grid>
+                    <StackLayout Padding="0" Margin="0">
+                        <Image  Source="img_menu.png" WidthRequest="500"/>
+                    </StackLayout>
+                    <StackLayout Margin="15,150,15,0">
+                        <Frame BackgroundColor="White" HasShadow="True" HeightRequest="500" HorizontalOptions="FillAndExpand">
+                            <StackLayout>
+                                <!--LABEL TITRE-->
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label Text="INSCRIPTION" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                                </StackLayout>
+                                <!--ENSEMBLE DES ENTRY-->
+                                <StackLayout Margin="0,25,0,0">
+                                    <!--ENTRY EMAIL-->
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0" CornerRadius="50" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
+                                            <Entry x:Name="eEmail" Placeholder="Email" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" TextChanged="eEmail_TextChanged" Unfocused="eEmail_Unfocused"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <!--ENTRY MOT DE PASSE-->
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
+                                            <Entry x:Name="eMotDePasse" Placeholder="Mot de passe" IsPassword="True" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" TextChanged="eMotDePasse_TextChanged" Unfocused="eMotDePasse_Unfocused"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <!--ENTRY CONFIRMER MOT DE PASSE-->
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
+                                            <Entry x:Name="eConfirmerMotDePasse" Placeholder="Confirmer mot de passe" IsPassword="True" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" TextChanged="eConfirmerMotDePasse_TextChanged" Unfocused="eConfirmerMotDePasse_Unfocused"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <!--ENTRY PSEUDO-->
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
+                                            <Entry x:Name="ePseudo" Placeholder="Pseudo" TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" Unfocused="ePseudo_Unfocused"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <!--ENTRY DATE DE NAISSANCE-->
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" Margin="0,20,0,0" CornerRadius="50" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="Orange" CornerRadius="50" HeightRequest="35" WidthRequest="35" Padding="0" HorizontalOptions="Start" Margin="7,7,0,7"></Frame>
+                                            <DatePicker x:Name="dtpDateDeNaissance"  TextColor="Orange" HorizontalOptions="FillAndExpand" Margin="0,0,15,0" DateSelected="dtpDateDeNaissance_DateSelected"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
 
-                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
 
-                                <Label></Label>
+                                    <Label></Label>
 
+                                </StackLayout>
+                                <Button x:Name="btnConfirmerAjout"  Text="CONFIRMER INSCRIPTION" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
+                                <Label x:Name="labelErreur" TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
                             </StackLayout>
-                            <Button x:Name="btnConfirmerAjout"  Text="CONFIRMER INSCRIPTION" BackgroundColor="OrangeRed" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="btnConfirmerAjout_Clicked"/>
-                            <Label x:Name="labelErreur" TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-            </Grid>
-        </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

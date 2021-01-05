@@ -144,7 +144,7 @@ namespace Projet_Xamarin_V1
 
             foreach (var recette in liRecettes)
             {
-                await App.EtablissementsRepository.SupprimerEtablissementUserAsync(recette.Id);
+                await App.RecettesRepository.SupprimerRecettesUserAsync(recette.Id);
             }
         }
         #endregion
@@ -345,6 +345,7 @@ namespace Projet_Xamarin_V1
             }
         }
         #endregion
+
         #endregion
     }
 }
