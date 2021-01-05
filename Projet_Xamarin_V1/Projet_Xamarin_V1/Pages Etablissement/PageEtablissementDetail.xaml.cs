@@ -61,5 +61,19 @@ namespace Projet_Xamarin_V1
             remplirLvAvisEtablissement();
             lvAvisEtablissement.EndRefresh();
         }
+
+        private async void btnVueMaps_Clicked(object sender, EventArgs e)
+        {
+            var placemark = new Placemark
+            {
+                CountryName = ePays.Text,
+                AdminArea = eCodePostal.Text,
+                Thoroughfare = eNom.Text + " " + eNumero.Text,
+                Locality = eVille.Text
+            };
+            var options = new MapLaunchOptions { Name = eNom.Text + " " + eNumero.Text/*, NavigationMode = NavigationMode.Driving*/ };
+
+            await Map.OpenAsync(placemark, options);
+        }
     }
 }
