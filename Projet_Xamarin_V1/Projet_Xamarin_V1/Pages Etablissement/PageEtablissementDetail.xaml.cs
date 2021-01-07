@@ -93,6 +93,16 @@ namespace Projet_Xamarin_V1
             await Map.OpenAsync(placemark, options);
         }
         #endregion
+
+        #region Retour à la liste
+        private async void btnRetourListe_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Accueil(Pseudo));
+        }
         #endregion
+
+
+        #endregion
+
     }
 }

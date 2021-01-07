@@ -28,6 +28,7 @@ namespace Projet_Xamarin_V1.Pages_Recette
             ID = id;
             Pseudo = pseudo;
             remplirRecette(ID);
+            remplirLvAvisrecettes();
         }
         #endregion
 
@@ -84,6 +85,29 @@ namespace Projet_Xamarin_V1.Pages_Recette
         private async void btnModifier_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageModifierRecette(ID, Pseudo));
+        }
+        #endregion
+
+        #region Remplir liste des avis recettes
+        private async void remplirLvAvisrecettes()
+        {
+            List<AvisRecette> avis = await App.AvisRecetteRepository.RecupererAllAvisRecette(ID);
+            lvAvisRecettes.ItemsSource = avis;
+        }
+        #endregion
+
+        #region Refresh liste des avis recettes
+        private void lvAvisRecettes_Refreshing(object sender, EventArgs e)
+        {
+            remplirLvAvisrecettes();
+            lvAvisRecettes.EndRefresh();
+        }
+        #endregion
+
+        #region Retour à la liste
+        private async void btnRetourListe_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageGererRecetteUser(Pseudo));
         }
         #endregion
     }

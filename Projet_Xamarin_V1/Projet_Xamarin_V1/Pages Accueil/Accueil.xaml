@@ -60,9 +60,7 @@
                                                     <Label Text="{Binding Nom}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                                 </StackLayout>
                                                 <StackLayout HeightRequest="20" Orientation="Horizontal">
-                                                    <Label Text="{Binding Budget}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                                    <Label Text="," TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                                    <Label Text="{Binding Ingredients}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                    <Label Text="{Binding Budget, StringFormat='{0:0}/5'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
                                                     <Image Source="{Binding UrlImage}" WidthRequest="400" HeightRequest="266" Aspect="Fill" />
@@ -72,12 +70,11 @@
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                    </ListView>
+                        </ListView>
                     </StackLayout>
                 </ScrollView>
                 <Button x:Name="btnAjoutRecette" Clicked="btnAjoutRecette_Clicked" Grid.Row="0" Text="Ajouter une recette" FontAttributes="Bold" BackgroundColor="OrangeRed" BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
             </Grid>
-
         </StackLayout>
     </ContentPage>
 
