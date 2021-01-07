@@ -3,52 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projet_Xamarin_V1.Pages_Recette.PageGestionRecetteDetail">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Grid>
-                    <StackLayout Margin="0,0,10,0">
-                        <StackLayout>
-                            <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
-                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Label FontSize="Large" TextColor="Gray">Informations de la Recette :</Label>
+        <StackLayout>
+            <Grid>
+                <ScrollView>
+                    <StackLayout>
+                        <Grid>
+                            <StackLayout Margin="0,0,10,0">
+                                <StackLayout>
+                                    <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Label FontSize="Large" TextColor="Gray">Informations de la Recette :</Label>
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
+
+                                    <Image x:Name="imgRecette" WidthRequest="400" HeightRequest="266" Aspect="Fill" Margin="5,0,0,0"/>
+
+                                    <!--Premier champ : nom-->
+                                    <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Nom:</Label>
+                                    <Entry x:Name="eNom" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                                    <!--Deuxième champ : budget-->
+                                    <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Budget:</Label>
+                                    <Entry x:Name="eBudget" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                                    <!--Troisième champ : ingredient-->
+                                    <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Ingredients:</Label>
+                                    <Entry x:Name="eIngredients" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                                    <!--Quatrième champ : Descrition-->
+                                    <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
+                                    <Editor x:Name="eDescription" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Editor>
+
+                                    <!--Cinquième champ : Caracteristique-->
+                                    <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Caracteristique:</Label>
+                                    <Entry x:Name="eCaracteristique" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+
+                                    <!--Sixième champ : Type-->
+                                    <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Type:</Label>
+                                    <Entry x:Name="eType" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
                                 </StackLayout>
-                            </Frame>
-
-                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" Margin="5" ></BoxView>
-
-                            <Image x:Name="imgRecette" WidthRequest="400" HeightRequest="266" Aspect="Fill" Margin="5,0,0,0"/>
-
-                            <!--Premier champ : nom-->
-                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Nom:</Label>
-                            <Entry x:Name="eNom" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
-
-                            <!--Deuxième champ : budget-->
-                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Budget:</Label>
-                            <Entry x:Name="eBudget" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
-
-                            <!--Troisième champ : ingredient-->
-                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Ingredients:</Label>
-                            <Entry x:Name="eIngredients" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
-
-                            <!--Quatrième champ : Descrition-->
-                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Description:</Label>
-                            <Editor x:Name="eDescription" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Editor>
-
-                            <!--Cinquième champ : Caracteristique-->
-                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Caracteristique:</Label>
-                            <Entry x:Name="eCaracteristique" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
-
-                            <!--Sixième champ : Type-->
-                            <Label Margin="10,0,0,0"  FontSize="Small" TextColor="Orange">Type:</Label>
-                            <Entry x:Name="eType" Margin="10,0,0,0" FontSize="Small" Text="" IsReadOnly="true"></Entry>
+                            </StackLayout>
+                        </Grid>
+                        <StackLayout>
+                            <Button x:Name="btnSupprimer" Text="Supprimer la recette" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnSupprimer_Clicked"  ImageSource="delete.png"/>
+                            <Button x:Name="btnModifier" Text="Modifier la recette" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifier_Clicked"  ImageSource="edit.png"/>
                         </StackLayout>
+                        <Frame BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label FontSize="Large" TextColor="Gray">Avis sur la recette :</Label>
+                            </StackLayout>
+                        </Frame>
+                        <ListView x:Name="lvAvisRecettes" HasUnevenRows="True" Refreshing="lvAvisRecettes_Refreshing">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell Height="150">
+                                        <Frame HasShadow="true" Margin="5" BackgroundColor="Orange">
+                                            <StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Note, StringFormat='{0:0}/10'}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                </StackLayout>
+                                                <StackLayout HeightRequest="20" Orientation="Horizontal">
+                                                    <Label Text="{Binding Description}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
-                </Grid>
-                <StackLayout>
-                    <Button x:Name="btnSupprimer" Text="Supprimer la recette" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnSupprimer_Clicked"  ImageSource="delete.png"/>
-                    <Button x:Name="btnModifier" Text="Modifier la recette" BackgroundColor="OrangeRed"  Margin="10" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Clicked="btnModifier_Clicked"  ImageSource="edit.png"/>
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
+                </ScrollView>
+                <Button x:Name="btnRetourListe" Clicked="btnRetourListe_Clicked"  Grid.Row="0" Text="Retour à la liste" FontAttributes="Bold" BackgroundColor="OrangeRed" BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

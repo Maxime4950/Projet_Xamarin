@@ -128,6 +128,15 @@ namespace Projet_Xamarin_V1
         }
         #endregion
 
+        #region Retour à la liste
+        private async void btnRetourListe_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageGererEtablissementsUser(Pseudo));
+        }
         #endregion
+
+        #endregion
+
+
     }
 }

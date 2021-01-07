@@ -31,12 +31,14 @@
                         <ListView x:Name="lvAvisEtablissement" HasUnevenRows="True" ItemSelected="lvAvisEtablissement_ItemSelected">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell Height="350">
+                                    <ViewCell Height="150">
                                         <Frame HasShadow="true" Margin="5" BackgroundColor="Orange">
                                             <StackLayout>
 
                                                 <StackLayout HeightRequest="20" Orientation="Horizontal">
-                                                    <Label Text="{Binding Note, StringFormat='{0:0}/10,'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                    <Label Text="{Binding Note, StringFormat='{0:0}/10'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                </StackLayout>
+                                                <StackLayout HeightRequest="20" Orientation="Horizontal">
                                                     <Label Text="{Binding Description}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                                 </StackLayout>
                                             </StackLayout>
